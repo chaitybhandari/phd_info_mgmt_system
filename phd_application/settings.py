@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
-    'phd_info_management',
+    'phd_info_mgmt_system',
 
 )
 
@@ -54,9 +54,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'lab_oriented_project.urls'
+ROOT_URLCONF = 'phd_application.urls'
 
-WSGI_APPLICATION = 'lab_oriented_project.wsgi.application'
+WSGI_APPLICATION = 'phd_application.wsgi.application'
 
 
 # Database

@@ -66,10 +66,14 @@ class PhDThesis(models.Model):
   dac2 = models.CharField(max_length=60, null=True, blank=True)
   cosupervisor = models.CharField(max_length=60, null=True, blank=True)
 
+  def __unicode__(self):
+    return self.thesis_id
+
   class Meta:
     db_table = "phd_thesis"
     verbose_name = "PhD Thesis"
     verbose_name_plural = "PhD Thesis"
+
 
 
 class PhDCourses(models.Model):
@@ -77,16 +81,23 @@ class PhDCourses(models.Model):
   course_name = models.CharField(max_length=50)
   credits = models.IntegerField()
 
+  def __unicode__(self):
+    return self.course_id
+
   class Meta:
     db_table = "phd_courses"
     verbose_name = "PhD Course"
     verbose_name_plural = "PhD Courses"
+
 
 class PhDScholarCourses(models.Model):
   id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE)
   course_id = models.ForeignKey(PhDCourses, on_delete=models.CASCADE)
   semester = models.CharField(max_length=10)
   grade = models.CharField(max_length=15, null=True, blank=True)
+
+  def __unicode__(self):
+    return self.id_number
 
   class Meta:
     db_table = "phd_scholar_courses"
@@ -103,6 +114,8 @@ class PhDEvaluator(models.Model):
 
   class Meta:
     db_table = "phd_evaluator"
+    verbose_name = "PhD Evaluator"
+    verbose_name_plural = "PhD Evaluators"
 
 
 

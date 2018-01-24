@@ -4,7 +4,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'lab_oriented_project.views.home', name='home'),
+    # url(r'^$', 'phd_application.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
