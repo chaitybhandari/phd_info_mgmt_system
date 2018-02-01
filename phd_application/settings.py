@@ -1,5 +1,5 @@
 """
-Django settings for lab_oriented_project project.
+Django settings for phd_application project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -14,6 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_PATH = os.path.abspath(os.path.join(SETTINGS_DIR, os.pardir))
 DATABASE_PATH = os.path.join(PROJECT_PATH, "phd_info.db")
+TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -54,6 +55,11 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_DIRS = (
+
+    TEMPLATE_PATH,
+
+)
 ROOT_URLCONF = 'phd_application.urls'
 
 WSGI_APPLICATION = 'phd_application.wsgi.application'

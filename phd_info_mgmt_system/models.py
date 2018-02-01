@@ -14,10 +14,10 @@ class PhDScholar(models.Model):
   name = models.CharField(max_length=60)
   department = models.CharField(max_length=50)
   email = models.CharField(max_length=60, null=True, blank=True)
-  gender = models.CharField(max_length=1, null=True,
+  sex = models.CharField(max_length=1, null=True,
                             choices=GENDER_CHOICES, blank=True)
   phone_no = models.CharField(max_length=12, null=True, blank=True)
-  type = models.CharField(max_length=12, null=True, blank=True)
+  phd_type = models.CharField(max_length=12, null=True, blank=True)
   year_of_admission = models.CharField(max_length=7, null=True, blank=True)
   semester_of_admission = models.CharField(max_length=2,
                                            choices=SEMESTER_CHOICES,
@@ -50,7 +50,7 @@ class PhDThesis(models.Model):
   viva_date = models.DateField("Viva Date", null=True, blank=True)
   qualifying_date = models.DateField("Qualifying Date",
                                      null=True, blank=True)
-  phd_awarded_date = models.DateField("_(PhD Awarded Date)",
+  phd_awarded_date = models.DateField("PhD Awarded Date",
                                       null=True, blank=True)
   topic_approval_status = models.CharField(max_length=3,
                                            null=True, blank=True)
@@ -116,6 +116,24 @@ class PhDEvaluator(models.Model):
     db_table = "phd_evaluator"
     verbose_name = "PhD Evaluator"
     verbose_name_plural = "PhD Evaluators"
+
+class ScholarQualifyingExam(models.Model):
+  id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE)
+  primary_area = models.CharField(max_length=60, null=True, blank=True)
+  secondary_area = models.CharField(max_length=60, null=True, blank=True)
+  first_attempt_date = models.DateField("First Attempt Date",
+                                        null=True, blank=True)
+  second_attempt_date = models.DateField("Second Attempt Date",
+                                         null=True, blank=True)
+  final_result = models.CharField(max_length=60, null=True, blank=True)
+
+  class Meta:
+    db_table = "scholar_qualifying_exam"
+    verbose_name = "Scholar Qualifying Exam"
+    verbose_name_plural = "Scholar Qualifying Exam"
+
+
+
 
 
 
