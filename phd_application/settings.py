@@ -15,11 +15,9 @@ SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_PATH = os.path.abspath(os.path.join(SETTINGS_DIR, os.pardir))
 DATABASE_PATH = os.path.join(PROJECT_PATH, "phd_info.db")
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
-#STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
-STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__),'static'),)
-
-#STATIC_ROOT = ''
+STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
 STATIC_URL = '/static/'
+
 
 
 
