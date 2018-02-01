@@ -7,3 +7,8 @@ def phd_scholar_form(request):
   return render_to_response('phd_info_mgmt_system/phd_scholar_insert.html',
                             {}, context)
 
+def phd_thesis_update_form(request):
+  context = RequestContext(request)
+  return render_to_response('phd_info_mgmt_system/test.html',
+                            {}, context)  
+

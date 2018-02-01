@@ -1,0 +1,196 @@
+{% load static %}
+
+<html>
+<head>
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
++
+<p class="test">Hello World!</p>
+
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Thesis Updation Form</legend>
+
+<!-- Thesis ID-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Thesis-ID">Thesis ID</label>  
+  <div class="col-md-5">
+  <input id="Thesis-ID" name="Thesis-ID" type="text" placeholder="" class="form-control input-md" readonly>
+    
+  </div>
+</div></br>
+
+<!-- ID No.-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">ID No.</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" readonly>
+    
+  </div>
+</div></br>
+
+<!-- Qualifying Date-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Qualifying Date</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Research Area-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Research Area</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textarea">Initial Thesis Title</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="textarea" name="textarea"></textarea>
+  </div>
+</div></br>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textarea">Final Thesis Title</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="textarea" name="textarea"></textarea>
+  </div>
+</div></br>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Topic Approval Status</label>
+  <div class="col-md-5">
+    <select id="selectbasic" name="selectbasic" class="form-control">
+      <option value="1">Approved</option>
+      <option value="2">Pending</option>
+      <option value="3">Rejected</option>
+    </select>
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Supervisor</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Co-supervisor</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Examiner 1</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Examiner 2</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">DAC 1</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">DAC 2</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Draft Submission Date</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Pre-submission Date</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Final Submission Date</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Viva Date</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">PhD Awarded Date</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
+    
+  </div>
+</div></br>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id"></label>
+  <div class="col-md-8">
+    <button id="button1id" name="button1id" class="btn btn-success">Submit</button>
+    <button id="button2id" name="button2id" class="btn btn-danger">Clear</button>
+  </div>
+</div></br>
+
+</fieldset>
+</form>
+
+
+</body>
+
+</html>
