@@ -6,4 +6,6 @@ urlpatterns = patterns('',
                            name='phd_scholar_insert'),
                        url(r'^phd_thesis_update/$', views.phd_thesis_update_form,
                            name='phd_thesis_update'),
+                       url(r'^phd_scholar_insert/$', views.phd_scholar_insert,
+                           name='phd_scholar_insert')
                        )
