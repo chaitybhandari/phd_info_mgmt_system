@@ -1,4 +1,8 @@
-body{
-	font-size: 50px;
-	color: red;
+#thesis_id, #id_number, #name{
+	cursor: default;
+}
+
+#thesis_id:focus, #id_number:focus, #name:focus{
+	box-shadow: 0 0 0 0;
+	border-color: #ced4da;
 }

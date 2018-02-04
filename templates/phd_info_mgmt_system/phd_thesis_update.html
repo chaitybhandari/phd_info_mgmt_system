@@ -1,195 +1,260 @@
+<!DOCTYPE html>
 {% load static %}
+<html lang="en">
 
-<html>
-<head>
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
-</head>
+    <head>
+        <title>Thesis Update Form</title>
+        <!--Font Awesome (added because you use icons in your prepend/append)-->
+        <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+        
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<body>
-<p class="test">Hello World!</p>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        
+    </head>
+    <body>
+        <script src="{% static 'js/utils.js' %}"></script>
+        <div class="bootstrap-iso">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <form class="form-horizontal" id="phd_thesis_form" method="post" action="" novalidate>
+                            {% csrf_token %}
+                            <fieldset>
+                
+                                <!-- Form Name -->
+                                <legend>PhD Thesis Updation Form</legend>
+                
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="thesis_id">Thesis ID</label>
+                                  <input id="thesis_id" name="thesis_id" placeholder="" class="form-control input-md" required="" type="number" readonly>
+                                </div>
 
-<form class="form-horizontal">
-<fieldset>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="id_number">ID Number</label>
+                                  <input id="id_number" name="id_number" placeholder="" class="form-control input-md" required="" type="text" readonly>
+                                </div>
+                
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="name">Name</label>
+                                  <input id="name" name="name" placeholder="" class="form-control input-md" required="" type="text" readonly>
+                                </div>
 
-<!-- Form Name -->
-<legend>Thesis Updation Form</legend>
+                                <div class="form-group">
+                                    <label class="control-label" for="qualifying_date">Qualifying Date</label>
+                                        <div class="input-group">
+                                            <input id="qualifying_date" class="form-control" name="qualifying_date" placeholder="DD/MM/YYYY">
+                                            <span class="input-group-addon col-md-4">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                </div>
 
-<!-- Thesis ID-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Thesis-ID">Thesis ID</label>  
-  <div class="col-md-5">
-  <input id="Thesis-ID" name="Thesis-ID" type="text" placeholder="" class="form-control input-md" readonly>
-    
-  </div>
-</div></br>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="research_area">Research Area</label>
+                                  <input id="research_area" name="research_area" placeholder="" class="form-control input-md" required="" type="text">
+                                </div>
 
-<!-- ID No.-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">ID No.</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" readonly>
-    
-  </div>
-</div></br>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="initial_thesis_title">Initial Thesis Title</label>
+                                  <input id="initial_thesis_title" name="initial_thesis_title" placeholder="" class="form-control input-md" required="" type="textarea">
+                                </div>
 
-<!-- Qualifying Date-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Qualifying Date</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="final_thesis_title">Final Thesis Title</label>
+                                  <input id="final_thesis_title" name="final_thesis_title" placeholder="" class="form-control input-md" required="" type="textarea">
+                                </div>
 
-<!-- Research Area-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Research Area</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <!-- Select Basic -->
+                                <div class="form-group">
+                                  <label class="control-label" for="topic_approval_status">Topic Approval Status</label>
+                                    <select id="topic_approval_status" name="topic_approval_status" class="form-control">
+                                      <option value="1">Approved</option>
+                                      <option value="2">Pending</option>
+                                      <option value="3">Rejected</option>
+                                    </select>
+                                </div>
+                
+                                <div class="form-group">
+                                  <label class="control-label" for="supervisor">Supervisor</label>
+                                  <input id="supervisor" name="supervisor" placeholder="" class="form-control input-md" type="text">
+                                </div>
 
-<!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textarea">Initial Thesis Title</label>
-  <div class="col-md-5">                     
-    <textarea class="form-control" id="textarea" name="textarea"></textarea>
-  </div>
-</div></br>
+                                <div class="form-group">
+                                  <label class="control-label" for="cosupervisor">Co-Supervisor</label>
+                                  <input id="cosupervisor" name="cosupervisor" placeholder="" class="form-control input-md" type="text">
+                                </div>
 
-<!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textarea">Final Thesis Title</label>
-  <div class="col-md-5">                     
-    <textarea class="form-control" id="textarea" name="textarea"></textarea>
-  </div>
-</div></br>
+                                <div class="form-group">
+                                  <label class="control-label" for="examiner1">Examiner 1</label>
+                                  <input id="examiner1" name="examiner1" placeholder="" class="form-control input-md" type="text">
+                                </div>
 
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectbasic">Topic Approval Status</label>
-  <div class="col-md-5">
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="1">Approved</option>
-      <option value="2">Pending</option>
-      <option value="3">Rejected</option>
-    </select>
-  </div>
-</div></br>
+                                <div class="form-group">
+                                  <label class="control-label" for="examiner2">Examiner 2</label>
+                                  <input id="examiner2" name="examiner2" placeholder="" class="form-control input-md" type="text">
+                                </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Supervisor</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <div class="form-group">
+                                  <label class="control-label" for="dac1">DAC 1</label>
+                                  <input id="dac1" name="dac1" placeholder="" class="form-control input-md" type="text">
+                                </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Co-supervisor</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <div class="form-group">
+                                  <label class="control-label" for="dac2">DAC 2</label>
+                                  <input id="dac2" name="dac2" placeholder="" class="form-control input-md" type="text">
+                                </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Examiner 1</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <div class="form-group">
+                                    <label class="control-label" for="draft_submission_date">Draft Submission Date</label>
+                                        <div class="input-group">
+                                            <input id="draft_submission_date" class="form-control" name="draft_submission_date" placeholder="DD/MM/YYYY">
+                                            <span class="input-group-addon col-md-4">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Examiner 2</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <div class="form-group">
+                                    <label class="control-label" for="pre_submission_date">Pre Submission Date</label>
+                                        <div class="input-group">
+                                            <input id="pre_submission_date" class="form-control" name="pre_submission_date" placeholder="DD/MM/YYYY">
+                                            <span class="input-group-addon col-md-4">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">DAC 1</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <div class="form-group">
+                                    <label class="control-label" for="final_submission_date">Final Submission Date</label>
+                                        <div class="input-group">
+                                            <input id="final_submission_date" class="form-control" name="final_submission_date" placeholder="DD/MM/YYYY">
+                                            <span class="input-group-addon col-md-4">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">DAC 2</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <div class="form-group">
+                                    <label class="control-label" for="viva_date">Viva Date</label>
+                                        <div class="input-group">
+                                            <input id="viva_date" class="form-control" name="viva_date" placeholder="DD/MM/YYYY">
+                                            <span class="input-group-addon col-md-4">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Draft Submission Date</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <div class="form-group">
+                                    <label class="control-label" for="phd_awarded_date">PhD Awarded Date</label>
+                                        <div class="input-group">
+                                            <input id="phd_awarded_date" class="form-control" name="phd_awarded_date" placeholder="DD/MM/YYYY">
+                                            <span class="input-group-addon col-md-4">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input class="form-control input-md" id="submit" type="submit" value="Save Thesis Information">
+                                </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Pre-submission Date</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+                                <div class="form-group">
+                                    <input class="form-control input-md" id="reset" type="reset" value="Clear Information">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+        <!-- Include jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        
+        <!-- Include Date Range Picker -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script>
+            var phd_form  = document.getElementById("phd_thesis_form");
+            phd_form.addEventListener("submit", function(){
+                var all_input_elements = phd_form.getElementsByTagName('input');
+                for (var i=0; i< all_input_elements.length; i++){
+                    input = all_input_elements[i];
+                    if (input.name && !input.value){
+                        input.name = '';
+                    }
+                }
+            });
+        </script>
+        <script>
+            $(document).ready(function(){
+                phd_form = document.getElementById("phd_thesis_form")
+                dropdowns = phd_form.getElementsByTagName('select');
+                for (var i=0; i<dropdowns.length; i++){
+                    dropdown = dropdowns[i];
+                    dropdown.selectedIndex = -1;
+                }
+                var qualifying_date=$('input[name="qualifying_date"]'); //our date input has the name "date"
+                var draft_submission_date=$('input[name="draft_submission_date"]');
+                var pre_submission_date=$('input[name="pre_submission_date"]');
+                var final_submission_date=$('input[name="final_submission_date"]');
+                var viva_date=$('input[name="viva_date"]');
+                var phd_awarded_date=$('input[name="phd_awarded_date"]');
+                var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                qualifying_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                draft_submission_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                pre_submission_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                final_submission_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                viva_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                phd_awarded_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Final Submission Date</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
+            })
+        </script>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Viva Date</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">PhD Awarded Date</label>  
-  <div class="col-md-5">
-  <input id="textinput" name="textinput" type="date" placeholder="" class="form-control input-md">
-    
-  </div>
-</div></br>
-
-<!-- Button (Double) -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="button1id"></label>
-  <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-success">Submit</button>
-    <button id="button2id" name="button2id" class="btn btn-danger">Clear</button>
-  </div>
-</div></br>
-
-</fieldset>
-</form>
-
-
-</body>
+    </body>
 
 </html>

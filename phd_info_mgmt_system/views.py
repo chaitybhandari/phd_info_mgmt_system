@@ -1,6 +1,6 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from phd_info_management.models import PhDScholar
+from phd_info_mgmt_system.models import PhDScholar
 # Create your views here.
 
 def phd_scholar_form(request):
@@ -24,6 +24,6 @@ def phd_scholar_insert(request):
 
 def phd_thesis_update_form(request):
   context = RequestContext(request)
-  return render_to_response('phd_info_mgmt_system/test.html',
+  return render_to_response('phd_info_mgmt_system/phd_thesis_update.html',
                             {}, context)  
 
