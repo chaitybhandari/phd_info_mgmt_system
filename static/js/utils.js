@@ -25,3 +25,30 @@ function is_number(id, e){
 function hide_on_blur(id){
     document.getElementById(id).style.display = "none"
 }
+
+function validate_phd_scholar_form(){
+    var phd_form = document.forms["phd_scholar_form"];
+    var id_number = phd_form["id_number"].value;
+    var reg = /20\d\dPH[A-Z][A-Z]\d\d\d\dH/g;
+    var match_arr = id_number.match(reg);
+    if (!match_arr){
+        alert("Please enter a valid ID Number.");
+        //document.getElementById("id_error").style.display = "inline"
+        return false;
+    }
+
+    var email_address = phd_form["email"].value;
+    if (email_address != ""){
+        var regular_email_reg = /^[A-Za-z][\w]+\@[\w]+(\.com|\.co\.in)/g;
+        var bits_email_reg = /^f20\d\d\d\d\d\d\@bits.hyderabad.ac.in/g;
+        var regular_email_address = email_address.match(regular_email_reg);
+        var bits_email_address = email_address.match(bits_email_reg);
+        if (!regular_email_address && !bits_email_address){
+            alert("Please enter a valid email address.");
+            return false;
+        }
+    }
+
+
+}
+

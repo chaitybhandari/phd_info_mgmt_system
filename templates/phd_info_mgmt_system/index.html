@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <div class="bits-image-bg">
+        <div class="button-group">
+            <div class="button-div">
+                <a href="/phd/phd_scholar_insert/"><button class="buttons" id="phd_scholar">PhD Scholar Information</button></a>
+            </div>
+            <div class="button-div">
+                <a href="/phd/phd_thesis_update"><button class="buttons" id="phd_thesis">PhD Thesis Information</button></a>
+            </div>
+            <div class="button-div">
+                <a href="/phd/phd_course_insert"><button class="buttons" id="phd_courses">PhD Course Information</button></a>
+            </div>
+            <div class="button-div">
+                <button class="buttons" id="phd_scholar_courses">PhD Scholar Courses</button>
+            </div>
+        </div>
+    </div>
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</body>
+</html>

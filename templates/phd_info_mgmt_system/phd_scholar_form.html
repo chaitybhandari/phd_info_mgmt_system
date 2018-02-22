@@ -7,6 +7,8 @@
         <!--Font Awesome (added because you use icons in your prepend/append)-->
         <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
         
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,12 +18,15 @@
         
     </head>
     <body>
+        {% if id_number_exists %}
+            <script>alert('{{ id_number_exists }}');</script>
+        {% endif %}
         <script src="{% static 'js/utils.js' %}"></script>
         <div class="bootstrap-iso">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <form class="form-horizontal" id="phd_scholar_form" method="post" action="/phd/phd_scholar_insert/">
+                        <form class="form-horizontal" id="phd_scholar_form" method="post" action="/phd/phd_scholar_insert/" onsubmit="return validate_phd_scholar_form()">
                             {% csrf_token %}
                             <fieldset>
                 
@@ -31,7 +36,10 @@
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="id_number">ID Number</label>
-                                  <input id="id_number" name="id_number" placeholder="" class="form-control input-md" required="" type="text">
+                                  <input id="id_number" name="id_number" placeholder="" class="form-control input-md" required="" type="text"  maxlength="13">
+                                  <!--<span id="id_error" class="alert alert-warning alert-dismissable" style="display:none">-->
+                                  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+                                      <!--<strong>Please enter a valid ID number.</strong></span>-->
                                 </div>
                 
                                 <!-- Text input-->
