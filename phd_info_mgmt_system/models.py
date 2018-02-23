@@ -67,7 +67,7 @@ class PhDThesis(models.Model):
   cosupervisor = models.CharField(max_length=60, null=True, blank=True)
 
   def __unicode__(self):
-    return self.thesis_id
+    return unicode(self.thesis_id)
 
   class Meta:
     db_table = "phd_thesis"
@@ -91,7 +91,8 @@ class PhDCourses(models.Model):
 
 
 class PhDScholarCourses(models.Model):
-  id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE)
+  id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE
+                                )
   course_id = models.ForeignKey(PhDCourses, on_delete=models.CASCADE)
   semester = models.CharField(max_length=10)
   grade = models.CharField(max_length=15, null=True, blank=True)
@@ -116,6 +117,7 @@ class PhDEvaluator(models.Model):
     db_table = "phd_evaluator"
     verbose_name = "PhD Evaluator"
     verbose_name_plural = "PhD Evaluators"
+
 
 class ScholarQualifyingExam(models.Model):
   id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE)

@@ -2,24 +2,21 @@
 {% load static %}
 <html lang="en">
 <head>
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <script src="{% static 'js/utils.js' %}"></script>
-    <div class="bits-image-bg">
+    <div class="index-page-img">
         <div class="button-group">
             <div class="button-div">
-                <a href="/phd/phd_scholar_insert/"><button class="buttons" id="phd_scholar">PhD Scholar Information</button></a>
+                <a href="/phd/phd_insert/"><button class="buttons" id="phd_insert">Insert PhD Information</button></a>
             </div>
             <div class="button-div">
-                <a href="/phd/phd_thesis_update"><button class="buttons" id="phd_thesis">PhD Thesis Information</button></a>
+                <a href="/phd/phd_update/"><button class="buttons" id="phd_update">Update PhD Information</button></a>
             </div>
             <div class="button-div">
-                <a href="/phd/phd_course_insert"><button class="buttons" id="phd_courses">PhD Course Information</button></a>
-            </div>
-            <div class="button-div">
-                <button class="buttons" id="phd_scholar_courses">PhD Scholar Courses</button>
+                <a href="#"><button class="buttons" id="phd_query">Query PhD Information</button></a>
             </div>
         </div>
     </div>

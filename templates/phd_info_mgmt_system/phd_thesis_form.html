@@ -17,36 +17,25 @@
         
     </head>
     <body>
+        
         <script src="{% static 'js/utils.js' %}"></script>
         <div class="bootstrap-iso">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <form class="form-horizontal" id="phd_thesis_form" method="post" action="" novalidate>
+                        <form class="form-horizontal" id="phd_thesis_form" method="post" action="/phd/phd_thesis_update/" novalidate>
                             {% csrf_token %}
                             <fieldset>
                 
                                 <!-- Form Name -->
                                 <legend>PhD Thesis Updation Form</legend>
-                
-                                <!-- Text input-->
-                                <div class="form-group">
-                                  <label class="control-label" for="thesis_id">Thesis ID</label>
-                                  <input id="thesis_id" name="thesis_id" placeholder="" class="form-control input-md" required="" type="number" readonly>
-                                </div>
 
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="id_number">ID Number</label>
                                   <input id="id_number" name="id_number" placeholder="" class="form-control input-md" required="" type="text" readonly>
                                 </div>
-                
-                                <!-- Text input-->
-                                <div class="form-group">
-                                  <label class="control-label" for="name">Name</label>
-                                  <input id="name" name="name" placeholder="" class="form-control input-md" required="" type="text" readonly>
-                                </div>
-
+                                
                                 <div class="form-group">
                                     <label class="control-label" for="qualifying_date">Qualifying Date</label>
                                         <div class="input-group">
@@ -179,6 +168,7 @@
             </div>
         </div>
         
+        
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
@@ -188,6 +178,14 @@
         <!-- Include Date Range Picker -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        {% for key, value in form_values.items %}
+            <script>
+                var element = document.getElementById('{{ key }}');
+                {% if value %}
+                    element.value = '{{ value }}';
+                {% endif %}
+            </script>
+        {% endfor %}
         <script>
             var phd_form  = document.getElementById("phd_thesis_form");
             phd_form.addEventListener("submit", function(){
