@@ -4,6 +4,11 @@ html, body {
     margin: 0;
 }
 
+#insert-link{
+    display: block;
+    padding: 15px 0px;
+}
+
 
 .button-div {
     width: 400px;
@@ -27,6 +32,7 @@ html, body {
     text-align: center;
     text-decoration: none;
     font-size: 16px;
+    font-family: Arial;
     margin: 4px 2px;
     cursor: pointer;
     transition: background .5s;
@@ -42,6 +48,8 @@ html, body {
 .button-group {
     padding-top: 150px;
 }
+
+
 
 .update-page-img {
     background-image: url("/static/img/bits.jpg");

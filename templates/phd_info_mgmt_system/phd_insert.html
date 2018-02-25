@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <div class="update-page-img">
+        <form id="phd_update_form" method="post">
+            {% csrf_token %}
+            
+            <div class="button-group">
+                <div class="button-div">
+                    <a id="insert-link" class="buttons" href="/phd/phd_scholar_insert/">Insert Scholar Information</a>
+                </div>
+                <div class="button-div">
+                    <a id="insert-link" class="buttons" href="/phd/phd_course_insert/">Insert Course Information</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</body>
+</html>

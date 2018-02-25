@@ -21,25 +21,28 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <form class="form-horizontal" id="phd_courses_form" method="post" action="phd/phd_course_insert/">
+                        <form class="form-horizontal" id="phd_courses_form" method="post" action="/phd/phd_course_insert/">
                             {% csrf_token %}
                             <fieldset>
                                 <legend>PhD Course Information</legend>
                                 <div class="form-group">
                                   <label class="control-label" for="course_id">Course ID</label>
-                                  <input id="course_id" name="course_name" placeholder="" class="form-control input-md" required="" type="text">
+                                  <input id="course_id" name="course_id" placeholder="" class="form-control input-md" required="" type="text">
                                 </div>
                 
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="course_name">Course Name</label>
-                                  <input id="course_name" name="coursename" placeholder="" class="form-control input-md" required="" type="text">
+                                  <input id="course_name" name="course_name" placeholder="" class="form-control input-md" required="" type="text">
                                 </div>
                                 
                                 <div class="form-group">
                                   <label class="control-label" for="credits">Credits</label>
                                   <input id="credits" name="credits" placeholder="" class="form-control input-md" type="text" onblur="return hide_on_blur('credits_error')" onkeypress="return is_number('credits_error', event);" ondrop="return false;" onpaste="return false;" maxlength="10">
                                       <span id="credits_error" style="color:red; display:none">*Input Digits [0-9]</span>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control input-md" id="submit" type="submit" value="Save Course Information">
                                 </div>
                                 
                             </fieldset>

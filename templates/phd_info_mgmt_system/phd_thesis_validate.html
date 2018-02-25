@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <title>Enter student details</title>
+        <!--Font Awesome (added because you use icons in your prepend/append)-->
+        <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+        
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        
+    </head>
+    <body>
+        {% if id_number_dne %}
+            <script>alert('{{ id_number_dne }}');</script>
+        {% endif %}
+        <script src="{% static 'js/utils.js' %}"></script>
+        <div class="bootstrap-iso">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <form class="form-horizontal" id="phd_thesis_form" method="post" action="/phd/phd_thesis_validate/" novalidate>
+                            {% csrf_token %}
+                            <fieldset>
+                
+                                <!-- Form Name -->
+                                <legend>Validate student details</legend>
+                
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="id_number">ID Number</label>
+                                  <input id="" name="id_number" placeholder="" class="form-control input-md" required="true" type="text">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input class="form-control input-md" id="submit" type="submit" value="Update Thesis Details">
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+        <!-- Include jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        
+        <!-- Include Date Range Picker -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script>
+            var phd_form  = document.getElementById("phd_thesis_form");
+            phd_form.addEventListener("submit", function(){
+                var all_input_elements = phd_form.getElementsByTagName('input');
+                for (var i=0; i< all_input_elements.length; i++){
+                    input = all_input_elements[i];
+                    if (input.name && !input.value){
+                        input.name = '';
+                    }
+                }
+            });
+        </script>
+        <script>
+            $(document).ready(function(){
+                phd_form = document.getElementById("phd_thesis_form")
+                dropdowns = phd_form.getElementsByTagName('select');
+                for (var i=0; i<dropdowns.length; i++){
+                    dropdown = dropdowns[i];
+                    dropdown.selectedIndex = -1;
+                }
+                var qualifying_date=$('input[name="qualifying_date"]'); //our date input has the name "date"
+                var draft_submission_date=$('input[name="draft_submission_date"]');
+                var pre_submission_date=$('input[name="pre_submission_date"]');
+                var final_submission_date=$('input[name="final_submission_date"]');
+                var viva_date=$('input[name="viva_date"]');
+                var phd_awarded_date=$('input[name="phd_awarded_date"]');
+                var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                qualifying_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                draft_submission_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                pre_submission_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                final_submission_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                viva_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+                phd_awarded_date.datepicker({
+                    format: 'dd/mm/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                })
+
+            })
+        </script>
+
+    </body>
+
+</html>
