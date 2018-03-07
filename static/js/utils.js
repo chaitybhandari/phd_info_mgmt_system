@@ -25,7 +25,17 @@ function is_number(id, e){
 function hide_on_blur(id){
     document.getElementById(id).style.display = "none"
 }
+function validate_phd_course_form(){
+    var phd_course_form  = document.forms["phd_course_form"];
+    var course_id = phd_course_form["course_id"].value;
+    var reg = /^[A-Z]{2,5}-(F|G)\d\d\d/g;
+    var match_arr = course_id.match(reg);
+    if (!match_arr){
+        alert("Please enter a valid Course ID.");
+        return false;
+    }
 
+}
 function validate_phd_scholar_form(){
     var phd_form = document.forms["phd_scholar_form"];
     var id_number = phd_form["id_number"].value;

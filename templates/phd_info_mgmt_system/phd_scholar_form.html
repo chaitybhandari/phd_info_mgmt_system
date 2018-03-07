@@ -105,7 +105,7 @@
                                           </div>
                                 </div>
                                 <div class="form-group">
-                                  <label class="control-label" for="phd_type">Year of Admission</label>
+                                  <label class="control-label" for="admission_year">Year of Admission</label>
                                       <select id="admission_year" name="admission_year" class="form-control input-md"></select>
                                 </div>
                                 
@@ -130,6 +130,9 @@
                                 
                                 <div class="form-group">
                                     <input class="form-control input-md" id="submit" type="submit" value="Save PhD Information">
+                                </div>
+                                <div class="form-group">
+                                    <a href="/phd/"><button class="form-control input-md" >Go to Home</button></a>
                                 </div>
                             </fieldset>
                         </form>
@@ -182,7 +185,7 @@
                 var date_input=$('input[name="fellowship_start_date"]'); //our date input has the name "date"
                 var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
                 date_input.datepicker({
-                    format: 'dd/mm/yyyy',
+                    format: 'yyyy-mm-dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,

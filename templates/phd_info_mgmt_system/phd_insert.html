@@ -6,6 +6,10 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+        {% if scholar_added %}
+            <script>alert('{{ scholar_added }}');</script>
+        {% endif %}
+
     <script src="{% static 'js/utils.js' %}"></script>
     <div class="update-page-img">
         <form id="phd_update_form" method="post">

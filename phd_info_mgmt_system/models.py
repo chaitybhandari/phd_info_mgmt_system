@@ -40,7 +40,8 @@ class PhDScholar(models.Model):
 
 class PhDThesis(models.Model):
   thesis_id = models.AutoField(primary_key=True)
-  id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE)
+  id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE,
+                                db_column='id_number')
   draft_submission_date = models.DateField("Draft Submission Date",
                                            null=True, blank=True)
   pre_submission_date = models.DateField("Pre Submission Date",
@@ -78,8 +79,8 @@ class PhDThesis(models.Model):
 
 class PhDCourses(models.Model):
   course_id = models.CharField(max_length=15, primary_key=True)
-  course_name = models.CharField(max_length=50)
-  credits = models.IntegerField()
+  course_name = models.CharField(max_length=50, null=True, blank=True)
+  credits = models.IntegerField(null=True, blank=True)
 
   def __unicode__(self):
     return self.course_id
@@ -91,16 +92,18 @@ class PhDCourses(models.Model):
 
 
 class PhDScholarCourses(models.Model):
-  id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE
-                                )
-  course_id = models.ForeignKey(PhDCourses, on_delete=models.CASCADE)
-  semester = models.CharField(max_length=10)
+  id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE,
+                                db_column='id_number')
+  course_id = models.ForeignKey(PhDCourses, on_delete=models.CASCADE,
+                                db_column='course_id')
+  semester = models.CharField(max_length=10, null=True, blank=True)
   grade = models.CharField(max_length=15, null=True, blank=True)
 
   def __unicode__(self):
-    return self.id_number
+    return unicode(self.id_number)
 
   class Meta:
+    unique_together = (("id_number", "course_id"),)
     db_table = "phd_scholar_courses"
     verbose_name = "PhD Scholar Course"
     verbose_name_plural = "PhD Scholar Courses"
@@ -120,7 +123,8 @@ class PhDEvaluator(models.Model):
 
 
 class ScholarQualifyingExam(models.Model):
-  id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE)
+  id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE,
+                                db_column='id_number')
   primary_area = models.CharField(max_length=60, null=True, blank=True)
   secondary_area = models.CharField(max_length=60, null=True, blank=True)
   first_attempt_date = models.DateField("First Attempt Date",

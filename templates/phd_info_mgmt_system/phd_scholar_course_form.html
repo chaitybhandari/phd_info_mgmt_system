@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+        
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        
+    </head>
+    <body>
+        {% if scholar_course_exists %}
+            <script>alert(' {{ scholar_course_exists}} ');</script>
+        {% endif %}
+        <script src="{% static 'js/utils.js' %}"></script>
+        <div class="bootstrap-iso">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <form class="form-horizontal" id="phd_scholar_course_form" method="post" action="/phd/phd_scholar_course_update/">
+                            {% csrf_token %}
+                            <fieldset>
+                                <legend>PhD Scholar Course Information</legend>
+                                <div class="form-group">
+                                  <label class="control-label" for="id_number">ID Number</label>
+                                  <input id="id_number" name="id_number" placeholder="" class="readonly form-control input-md" required="" type="text" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="control-label" for="course_id">Course</label>
+                                      <select id="course_id" name="course_id" required="" class="form-control input-md"></select>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="semester">Semester of Admission</label>
+                                    <select id="semester" name="semester" class="form-control" required="">
+                                      <option value="1">I</option>
+                                      <option value="2">II</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label" for="grade">Grade</label>
+                                    <select id="grade" name="semester" class="form-control">
+                                      <option value="A">A</option>
+                                      <option value="A-">A-</option>
+                                      <option value="B">B</option>
+                                      <option value="B-">B-</option>
+                                      <option value="C">C</option>
+                                      <option value="C-">C-</option>
+                                      <option value="D">D</option>
+                                      <option value="E">E</option>
+                                      <option value="NC">NC</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input class="form-control input-md" id="submit" type="submit" value="Save Course Information">
+                                </div>
+                            </fieldset>
+                        </form>
+                        <div class="form-group">
+                            <a href="/phd/"><button class="form-control input-md">Go to Home</button></a>
+                        </div>
+       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+        <!-- Include jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        {% for key, value in form_values.items %}
+            <script>
+                var element = document.getElementById('{{ key }}');
+                {% if value %}
+                    element.value = '{{ value }}';
+                {% endif %}
+            </script>
+        {% endfor %}
+        
+        <script>
+            var course_options = ""
+        </script>
+        {% if dept_course_list %}
+            {% for course in dept_course_list %}
+        <script>
+            course_options += "<option value={{ course.course_id }}>{{ course.course_id }} {{ course.course_name }} </option>"
+        </script>
+            {% endfor %}
+        {% endif %}
+        <script>
+            document.getElementById("course_id").innerHTML = course_options;
+        </script>
+        <script>
+            $(document).ready(function(){
+                phd_form = document.getElementById("phd_scholar_course_form")
+                dropdowns = phd_form.getElementsByTagName('select');
+                for (var i=0; i<dropdowns.length; i++){
+                    dropdown = dropdowns[i];
+                    dropdown.selectedIndex = -1;
+                }});
+        </script>
+        <script>
+            var course_form  = document.getElementById("phd_scholar_course_form");
+            course_form.addEventListener("submit", function(){
+                var all_input_elements = course_form.getElementsByTagName('input');
+                for (var i=0; i< all_input_elements.length; i++){
+                    input = all_input_elements[i];
+                    if (input.name && !input.value){
+                        input.name = '';
+                    }
+                }
+            });
+        </script>
+    
+    </body>
+</html>

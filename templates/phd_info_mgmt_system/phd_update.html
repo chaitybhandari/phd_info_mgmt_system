@@ -9,6 +9,15 @@
         {% if id_number_dn_exist %}
             <script>alert('{{ id_number_dn_exist }}');</script>
         {% endif %}
+        {% if thesis_update_success %}
+            <script>alert('{{ thesis_update_success }}');</script>
+        {% endif %}
+        {% if scholar_update_success %}
+            <script>alert('{{ scholar_update_success }}');</script>
+        {% endif %}
+        
+        
+        
     <script src="{% static 'js/utils.js' %}"></script>
     <div class="update-page-img">
         <form id="phd_update_form" method="post">
@@ -28,7 +37,7 @@
                     <button class="buttons" type="submit" id="phd_qualifying">PhD Scholar Qualifying Exam Information</button>
                 </div>
                 <div class="button-div">
-                    <button class="buttons" type="submit" id="phd_scholar_courses">PhD Scholar Courses</button>
+                    <button class="buttons" type="submit" id="phd_scholar_courses" formaction="/phd/render_update_form/">PhD Scholar Courses</button>
                 </div>
                 <input type="hidden" id="source" name="source" value="" />
             </div>
