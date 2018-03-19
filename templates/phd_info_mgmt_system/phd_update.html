@@ -3,9 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Include jQuery -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+    <ul class="navbar">
+        <li class="navbar-item"><a class="active" href="/phd/">Home</a></li>
+    </ul>
         {% if id_number_dn_exist %}
             <script>alert('{{ id_number_dn_exist }}');</script>
         {% endif %}
@@ -25,7 +33,8 @@
             
             <div class="button-group">
                 <div class="input-div">
-                    <input id="id_number" name="id_number" class="form-input" placeholder="Enter PhD Scholar ID" required />
+                    <!--<input id="id_number" name="id_number" class="form-input" placeholder="Enter PhD Scholar ID" required />-->
+                    <select id="id_number" name="id_number" class="form-input"></select>
                 </div>
                 <div class="button-div">
                     <button class="buttons" type="submit" id="phd_scholar" formaction="/phd/render_update_form/" onclick="">PhD Scholar Information</button>
@@ -33,9 +42,9 @@
                 <div class="button-div">
                     <button class="buttons" type="submit" id="phd_thesis" formaction="/phd/render_update_form/">PhD Thesis Information</button>
                 </div>
-                <div class="button-div">
-                    <button class="buttons" type="submit" id="phd_qualifying">PhD Scholar Qualifying Exam Information</button>
-                </div>
+                <!--<div class="button-div">-->
+                    <!--<button class="buttons" type="submit" id="phd_qualifying">PhD Scholar Qualifying Exam Information</button>-->
+                <!--</div>-->
                 <div class="button-div">
                     <button class="buttons" type="submit" id="phd_scholar_courses" formaction="/phd/render_update_form/">PhD Scholar Courses</button>
                 </div>
@@ -43,12 +52,25 @@
             </div>
         </form>
     </div>
-    
-    <!-- Include jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+        var id_number_options = "<option value='0'>Select Scholar ID Number</option>"
+    </script>
+    {% if phd_scholars %}
+        {% for scholar in phd_scholars %}
+    <script>
+        id_number_options += "<option value={{ scholar.id_number }}>{{ scholar.id_number }}</option>"
+    </script>
+        {% endfor %}
+    {% endif %}
+    <script>
+        document.getElementById("id_number").innerHTML = id_number_options;
+    </script>
     
     <script>
-        $(document).ready(function(){
+        jQuery.noConflict();
+        $(document).ready(function($){
+            $("#id_number").select2();
             var clicked_button = "";
             $('.buttons').click(function(evt){
                 clicked_button = evt.target.id;

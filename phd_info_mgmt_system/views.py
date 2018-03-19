@@ -13,8 +13,9 @@ def phd_index_page(request):
 
 def phd_update_page(request):
   context = RequestContext(request)
+  records = PhDScholar.objects.all()
   return render_to_response('phd_info_mgmt_system/phd_update.html',
-                            {}, context)
+                            {'phd_scholars': records}, context)
 
 
 def phd_insert_page(request):
@@ -48,6 +49,69 @@ def phd_scholar_insert(request):
                               {'form_origin': '/phd/phd_scholar_insert/'}, context)
 
 
+def phd_scholar_course_insert(request):
+  context = RequestContext(request)
+  if request.method == 'POST':
+    request_dict = dict()
+    id_number = request.POST.get('id_number')
+    course_id = request.POST.get('course_id')
+    phd_scholar_objs = PhDScholar.objects.filter(id_number=id_number)
+    if len(phd_scholar_objs) <= 0:
+      error_msg = "The scholar with ID {id}" \
+                  " does not exist in the database.".format(id=id_number)
+      courses = PhDCourses.objects.all()
+
+      return render_to_response('phd_info_mgmt_system/'
+                                'phd_scholar_course_form.html',
+                                {'scholar_dn_exist': error_msg,
+                                 'all_courses': courses,
+                                 'disable_grades': True}, context)
+
+    course_obj = PhDCourses.objects.filter(course_id=course_id)[0]
+    phd_scholar_obj = phd_scholar_objs[0]
+    phd_scholar_course_list =\
+     PhDScholarCourses.objects.filter(id_number=phd_scholar_obj,
+                                      course_id=course_obj)
+    if len(phd_scholar_course_list) > 0:
+      context_dict = dict()
+      error_msg = 'The Course with ID {id} and name {name} already' \
+                  ' exists in the' \
+                  ' Database under scholar' \
+                  ' {s_id}.'.format(id=course_obj.course_id,
+                                    name=course_obj.course_name,
+                                    s_id=phd_scholar_obj.id_number)
+
+      context_dict["scholar_course_exists"] = error_msg
+      courses = PhDCourses.objects.all()
+      context_dict["all_courses"] = courses
+      context_dict["disable_grades"] = True
+      return render_to_response('phd_info_mgmt_system/'
+                                'phd_scholar_course_form.html',
+                                context_dict, context)
+
+    for key in request.POST:
+      if key != "csrfmiddlewaretoken":
+        if key == 'id_number':
+          request_dict[key] = phd_scholar_obj
+        elif key == 'course_id':
+          request_dict[key] = course_obj
+        else:
+          request_dict[key] = request.POST.get(key)
+    phd_scholar_course = PhDScholarCourses(**request_dict)
+    phd_scholar_course.save()
+    success_msg = "Course Information has been updated against the PhD Scholar."
+    return render_to_response('phd_info_mgmt_system/phd_scholar_course_form.html',
+                              {'scholar_update_success': success_msg}, context)
+  else:
+    courses = PhDCourses.objects.all()
+    context_dict = dict()
+    context_dict["form_origin"] = '/phd/phd_scholar_course_insert/'
+    context_dict["all_courses"] = courses
+    context_dict["disable_grades"] = True
+    return render_to_response('phd_info_mgmt_system/phd_scholar_course_form.html',
+                              context_dict, context)
+
+
 def phd_course_insert(request):
   context = RequestContext(request)
   if request.method == 'POST':
@@ -75,7 +139,12 @@ def phd_thesis_update(request):
   if request.method == 'POST':
     id_number = request.POST.get('id_number')
     phd_scholar_obj = PhDScholar.objects.filter(id_number=id_number)[0]
+    phd_thesis_list = PhDThesis.objects.filter(id_number=phd_scholar_obj)
     request_dict = dict()
+    if len(phd_thesis_list) > 0:
+      thesis_id = phd_thesis_list[0].thesis_id
+      request_dict['thesis_id'] = thesis_id
+
     for key in request.POST:
       if key != "csrfmiddlewaretoken" and key != 'source':
         if key == 'id_number':
@@ -85,8 +154,10 @@ def phd_thesis_update(request):
     phd_thesis = PhDThesis(**request_dict)
     phd_thesis.save()
     success_msg = 'PhD Scholar Thesis Information successfully updated!'
+    records = PhDScholar.objects.all()
     return render_to_response('phd_info_mgmt_system/phd_update.html',
-                              {'thesis_update_success': success_msg},
+                              {'thesis_update_success': success_msg,
+                               'phd_scholars': records},
                               context)
   else:
     return render_to_response('phd_info_mgmt_system/phd_thesis_form.html'
@@ -115,7 +186,8 @@ def phd_scholar_course_update(request):
       context_dict["scholar_course_exists"] = error_msg
       context_dict["form_values"] = dict()
       context_dict["form_values"]['id_number'] = phd_scholar_obj.id_number
-      context_dict['dept_course_list'] = create_dept_course_list(phd_scholar_obj)
+      context_dict['scholar_course_list'] = \
+        create_scholar_course_list(phd_scholar_obj)
       return render_to_response('phd_info_mgmt_system/'
                                 'phd_scholar_course_form.html',
                                 context_dict, context)
@@ -131,8 +203,10 @@ def phd_scholar_course_update(request):
     phd_scholar_course = PhDScholarCourses(**request_dict)
     phd_scholar_course.save()
     success_msg = "Course Information has been updated against the PhD Scholar."
+    records = PhDScholar.objects.all()
     return render_to_response('phd_info_mgmt_system/phd_update.html',
-                              {'scholar_update_success': success_msg}, context)
+                              {'scholar_update_success': success_msg,
+                               'phd_scholars': records}, context)
   else:
     return render_to_response('phd_info_mgmt_system/phd_scholar_course_form.html',
                               {}, context)
@@ -148,8 +222,10 @@ def phd_scholar_update(request):
     phd_scholar = PhDScholar(**request_dict)
     phd_scholar.save()
     success_msg = 'PhD Scholar Information successfully updated!'
+    records = PhDScholar.objects.all()
     return render_to_response('phd_info_mgmt_system/phd_update.html',
-                              {'scholar_update_success': success_msg}, context)
+                              {'scholar_update_success': success_msg,
+                               'phd_scholars': records}, context)
   else:
     return render_to_response('phd_info_mgmt_system/phd_scholar_form.html',
                               {}, context)
@@ -159,7 +235,8 @@ def render_update_form(request):
   source_resolution_dict = {
     'phd_scholar': {
         'template': 'phd_scholar_form.html',
-        'class': PhDScholar
+        'class': PhDScholar,
+        'url': '/phd/phd_scholar_update/'
     },
     'phd_thesis': {
         'template': 'phd_thesis_form.html',
@@ -173,7 +250,8 @@ def render_update_form(request):
     },
     'phd_scholar_courses': {
         'template': 'phd_scholar_course_form.html',
-        'class': PhDScholarCourses
+        'class': PhDScholarCourses,
+        'url': '/phd/phd_scholar_course_update/'
     }
   }
   context = RequestContext(request)
@@ -182,18 +260,20 @@ def render_update_form(request):
   if request.method == 'POST':
     id_number = request.POST.get('id_number')
     source = request.POST.get('source')
-    if source == "phd_scholar":
-      context_dict["form_action"] = '/phd/phd_scholar_update/'
+    if source in ["phd_scholar", "phd_scholar_courses"]:
+      context_dict["form_action"] = source_resolution_dict[source]["url"]
       context_dict["readonly"] = True
     records = PhDScholar.objects.filter(id_number=id_number)
     if len(records) <= 0:
       error_msg = 'The ID Number {id} does not' \
                   ' exist in the Database.'.format(id=id_number)
+      records = PhDScholar.objects.all()
       return render_to_response('phd_info_mgmt_system/phd_update.html',
-                                {'id_number_dn_exist': error_msg}, context)
+                                {'id_number_dn_exist': error_msg,
+                                 'phd_scholars': records}, context)
     else:
       if source == "phd_scholar_courses":
-        context_dict['dept_course_list'] = create_dept_course_list(records[0])
+        context_dict['dept_course_list'] = create_scholar_course_list(records[0])
 
       source_class = ((source_resolution_dict.get(source)).get('class'))
       record_object_list = source_class.objects.filter(id_number=id_number)
@@ -231,4 +311,11 @@ def create_dept_course_list(scholar_record):
       dept_course_list.append(course)
   return dept_course_list
 
+
+def create_scholar_course_list(scholar_record):
+  records = PhDScholarCourses.objects.filter(id_number=scholar_record)
+  scholar_course_list = list()
+  for phd in records:
+    scholar_course_list.append(phd.course_id)
+  return scholar_course_list
 

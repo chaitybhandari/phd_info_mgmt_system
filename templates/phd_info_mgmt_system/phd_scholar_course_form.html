@@ -16,18 +16,24 @@
         {% if scholar_course_exists %}
             <script>alert(' {{ scholar_course_exists}} ');</script>
         {% endif %}
+
+        {% if scholar_dn_exist %}
+            <script>alert(' {{ scholar_dn_exist }} ');</script>
+        {% endif %}
+
+        
         <script src="{% static 'js/utils.js' %}"></script>
         <div class="bootstrap-iso">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <form class="form-horizontal" id="phd_scholar_course_form" method="post" action="/phd/phd_scholar_course_update/">
+                        <form class="form-horizontal" id="phd_scholar_course_form" method="post" action='{{ form_action }}' onsubmit="return validate_phd_scholar_course_form()">
                             {% csrf_token %}
                             <fieldset>
                                 <legend>PhD Scholar Course Information</legend>
                                 <div class="form-group">
                                   <label class="control-label" for="id_number">ID Number</label>
-                                  <input id="id_number" name="id_number" placeholder="" class="readonly form-control input-md" required="" type="text" readonly>
+                                  <input id="id_number" name="id_number" placeholder="" class="readonly form-control input-md" required="" type="text" maxlength="13">
                                 </div>
                                 
                                 <div class="form-group">
@@ -96,6 +102,24 @@
         </script>
             {% endfor %}
         {% endif %}
+
+        {% if scholar_course_list %}
+            {% for course in scholar_course_list %}
+        <script>
+            course_options += "<option value={{ course.course_id }}>{{ course.course_id }} {{ course.course_name }} </option>"
+        </script>
+            {% endfor %}
+        {% endif %}
+
+        {% if all_courses %}
+            {% for course in all_courses %}
+        <script>
+            course_options += "<option value={{ course.course_id }}>{{ course.course_id }} {{ course.course_name }} </option>"
+        </script>
+            {% endfor %}
+        {% endif %}
+
+        
         <script>
             document.getElementById("course_id").innerHTML = course_options;
         </script>
@@ -120,6 +144,28 @@
                 }
             });
         </script>
+        {% if readonly %}
+            <script>
+                document.getElementById("id_number").setAttribute("readonly", "");
+            </script>
+        {% else %}
+            <script>
+                document.getElementById("id_number").removeAttribute("readonly");
+            </script>
+        {% endif %}
+
+    
+        {% if disable_grades %}
+            <script>
+                document.getElementById("grade").setAttribute("disabled", "");
+            </script>
+        {% else %}
+            <script>
+                document.getElementById("grade").removeAttribute("disabled");
+            </script>
+        {% endif %}
+    
+    
     
     </body>
 </html>

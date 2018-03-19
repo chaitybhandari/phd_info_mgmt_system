@@ -36,6 +36,24 @@ function validate_phd_course_form(){
     }
 
 }
+function validate_phd_scholar_course_form(){
+
+    var form = document.forms["phd_scholar_course_form"];
+    var id_number = phd_form["id_number"].value;
+    var reg = /20\d\dPH[A-Z][A-Z]\d\d\d\dH/g;
+    var match_arr = id_number.match(reg);
+    if (!match_arr){
+        alert("Please enter a valid ID Number.");
+        //document.getElementById("id_error").style.display = "inline"
+        return false;
+    }
+
+
+
+
+}
+
+
 function validate_phd_scholar_form(){
     var phd_form = document.forms["phd_scholar_form"];
     var id_number = phd_form["id_number"].value;

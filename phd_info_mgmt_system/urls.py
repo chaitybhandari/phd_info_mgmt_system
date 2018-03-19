@@ -21,4 +21,7 @@ urlpatterns = patterns('',
                            , name='phd_scholar_course_update'),
                        url(r'^phd_course_insert/$', views.phd_course_insert,
                            name='phd_course_insert'),
+                       url(r'^phd_scholar_course_insert',
+                           views.phd_scholar_course_insert,
+                           name='phd_scholar_course_insert')
                        )

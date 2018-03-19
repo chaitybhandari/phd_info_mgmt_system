@@ -6,6 +6,9 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+    <ul class="navbar">
+        <li class="navbar-item"><a class="active" href="/phd/">Home</a></li>
+    </ul>
         {% if scholar_added %}
             <script>alert('{{ scholar_added }}');</script>
         {% endif %}
@@ -17,10 +20,13 @@
             
             <div class="button-group">
                 <div class="button-div">
-                    <a id="insert-link" class="buttons" href="/phd/phd_scholar_insert/">Insert Scholar Information</a>
+                    <a id="insert-link" class="buttons" href="/phd/phd_scholar_insert/">Scholar Information</a>
                 </div>
                 <div class="button-div">
-                    <a id="insert-link" class="buttons" href="/phd/phd_course_insert/">Insert Course Information</a>
+                    <a id="insert-link" class="buttons" href="/phd/phd_course_insert/">Course Information</a>
+                </div>
+                <div class="button-div">
+                    <a id="insert-link" class="buttons" href="/phd/phd_scholar_course_insert/">Scholar Course Information</a>
                 </div>
             </div>
         </form>
