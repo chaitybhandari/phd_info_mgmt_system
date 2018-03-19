@@ -23,12 +23,16 @@
         {% if scholar_update_success %}
             <script>alert('{{ scholar_update_success }}');</script>
         {% endif %}
+    
+        {% if no_scholar_courses %}
+            <script>alert(' {{ no_scholar_courses }} ');</script>
+        {% endif %}
         
         
         
     <script src="{% static 'js/utils.js' %}"></script>
     <div class="update-page-img">
-        <form id="phd_update_form" method="post">
+        <form id="phd_update_form" method="post" onsubmit="return validate_update_form()">
             {% csrf_token %}
             
             <div class="button-group">

@@ -49,10 +49,16 @@ function validate_phd_scholar_course_form(){
     }
 
 
-
-
 }
 
+function validate_update_form(){
+    var update_form = document.forms["phd_update_form"];
+    var id_value = update_form["id_number"].value;
+    if (id_value == '0'){
+        alert("Please select an ID number from the dropdown.");
+        return false;
+    }
+}
 
 function validate_phd_scholar_form(){
     var phd_form = document.forms["phd_scholar_form"];

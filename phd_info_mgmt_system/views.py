@@ -3,6 +3,8 @@ from django.shortcuts import render_to_response
 from phd_info_mgmt_system.models import PhDScholar, PhDCourses, PhDThesis, \
                                        PhDScholarCourses
 
+import datetime
+
 # Create your views here.
 
 
@@ -100,8 +102,8 @@ def phd_scholar_course_insert(request):
     phd_scholar_course = PhDScholarCourses(**request_dict)
     phd_scholar_course.save()
     success_msg = "Course Information has been updated against the PhD Scholar."
-    return render_to_response('phd_info_mgmt_system/phd_scholar_course_form.html',
-                              {'scholar_update_success': success_msg}, context)
+    return render_to_response('phd_info_mgmt_system/phd_insert.html',
+                              {'scholar_course_added': success_msg}, context)
   else:
     courses = PhDCourses.objects.all()
     context_dict = dict()
@@ -129,7 +131,7 @@ def phd_course_insert(request):
                                 {'course_exists': error_msg}, context)
     phd_course.save()
     success_msg = 'Course successfully added!'
-    return render_to_response('phd_info_mgmt_system/phd_course_form.html', {'course_exists': success_msg}, context)
+    return render_to_response('phd_info_mgmt_system/phd_insert.html', {'course_added': success_msg}, context)
   else:
     return render_to_response('phd_info_mgmt_system/phd_course_form.html', {}, context)
 
@@ -267,12 +269,23 @@ def render_update_form(request):
     if len(records) <= 0:
       error_msg = 'The ID Number {id} does not' \
                   ' exist in the Database.'.format(id=id_number)
-      records = PhDScholar.objects.all()
+      scholar_records = PhDScholar.objects.all()
       return render_to_response('phd_info_mgmt_system/phd_update.html',
                                 {'id_number_dn_exist': error_msg,
-                                 'phd_scholars': records}, context)
+                                 'phd_scholars': scholar_records}, context)
     else:
       if source == "phd_scholar_courses":
+        scholar_course_records =\
+          PhDScholarCourses.objects.filter(id_number=records[0])
+        if len(scholar_course_records) <= 0:
+          scholar_records = PhDScholar.objects.all()
+          error_msg = "There are no courses registered" \
+                      " under the student " \
+                      "with ID {id}.".format(id=records[0].id_number)
+          return render_to_response('phd_info_mgmt_system/phd_update.html',
+                                    {'no_scholar_courses': error_msg,
+                                     'phd_scholars': scholar_records}, context)
+
         context_dict['dept_course_list'] = create_scholar_course_list(records[0])
 
       source_class = ((source_resolution_dict.get(source)).get('class'))
@@ -286,6 +299,9 @@ def render_update_form(request):
           if key != '_state':
             if key.endswith('_id'):
               form_values[key.rstrip('_id')] = record_object.__dict__[key]
+            elif 'date' in key:
+              if record_object.__dict__[key]:
+                form_values[key] = record_object.__dict__[key].strftime('%Y-%m-%d')
             else:
               form_values[key] = record_object.__dict__[key]
       context_dict['form_values'] = form_values

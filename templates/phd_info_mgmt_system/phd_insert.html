@@ -13,6 +13,15 @@
             <script>alert('{{ scholar_added }}');</script>
         {% endif %}
 
+        {% if course_added %}
+            <script>alert('{{ course_added }}');</script>
+        {% endif %}
+    
+        {% if scholar_course_added %}
+            <script>alert('{{ scholar_course_added }}');</script>
+        {% endif %}
+    
+    
     <script src="{% static 'js/utils.js' %}"></script>
     <div class="update-page-img">
         <form id="phd_update_form" method="post">

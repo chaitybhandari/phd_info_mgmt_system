@@ -137,3 +137,9 @@ html, body {
 .navbar-item a:hover {
     background-color: #111;
 }
+
+#select2-id_number-container{
+    width: 400px;
+    height: 100px;
+    margin: 0 auto;
+}

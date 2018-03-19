@@ -66,8 +66,8 @@
                                 </div>
                 
                                 <div class="form-group">
-                                  <label class="control-label" for="phone_number">Phone Number</label>
-                                  <input id="phone_number" name="phone_number" placeholder="" class="form-control input-md" type="text" onblur="return hide_on_blur('phone_error')" onkeypress="return is_number('phone_error', event);" ondrop="return false;" onpaste="return false;" maxlength="10">
+                                  <label class="control-label" for="phone_no">Phone Number</label>
+                                  <input id="phone_no" name="phone_no" placeholder="" class="form-control input-md" type="text" onblur="return hide_on_blur('phone_error')" onkeypress="return is_number('phone_error', event);" ondrop="return false;" onpaste="return false;" maxlength="10">
                                       <span id="phone_error" style="color:red; display:none">*Input Digits [0-9]</span>
                                 </div>
                 
@@ -82,11 +82,15 @@
                                       <span id="credits_error" style="color:red; display:none">*Input Digits [0-9]</span>
                                 </div>
                 
-                                <div class="form-group">
+                              <div class="form-group">
                                   <label class="control-label" for="fellowship_type">Fellowship Type</label>
-                                  <input id="fellowship_type" name="fellowship_type" placeholder="" class="form-control input-md" type="text">
+                                    <select id="fellowship_type" name="fellowship_type" class="form-control">
+                                      <option value="No Fellowship">No Fellowship</option>
+                                      <option value="Own Fellowship">Own Fellowship</option>
+                                      <option value="Project Fellow">Project Fellow</option>
+                                      <option value="Institute Fellowship">Institute Fellowship</option>
+                                    </select>
                                 </div>
-                                
                                 <div class="form-group">
                                   <label class="control-label" for="phd_type">Awardee Reference Number</label>
                                   <input id="awardee_ref_no" name="awardee_ref_no" placeholder="" class="form-control input-md" type="text">
@@ -94,14 +98,14 @@
                                 
                                 <!-- Multiple Radios -->
                                 <div class="form-group">
-                                  <label class="control-label" for="radios">Sex</label>
+                                  <label class="control-label" for="sex">Sex</label>
                                           <div class="radio">
                                             <label for="radios-0">
-                                              <input name="radios" id="radios-0" value="1" type="radio">Male</label>
+                                              <input name="sex" id="sex" value="1" type="radio">Male</label>
                                           </div>
                                           <div class="radio">
                                             <label for="radios-1">
-                                              <input name="radios" id="radios-1" value="2" type="radio">Female</label>
+                                              <input name="sex" id="sex" value="2" type="radio">Female</label>
                                           </div>
                                 </div>
                                 <div class="form-group">

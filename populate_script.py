@@ -197,9 +197,12 @@ if __name__ == '__main__':
   logging.info("Adding 50 dummy PhD Scholars"
                " along with their thesis information.")
   add_phd_scholars_thesis()
+  logging.info("Adding courses to the database.")
   add_courses()
   if args.update_pickle:
     logging.info("Updating the pickle to"
                  " add newly added courses to the data structure.")
     update_department_course_pickle()
+  logging.info("Assigning random courses"
+               " to the scholars added, according to the scholar discipline.")
   add_scholar_courses()
