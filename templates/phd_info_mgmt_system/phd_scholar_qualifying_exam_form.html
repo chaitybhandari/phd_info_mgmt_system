@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <!--Font Awesome (added because you use icons in your prepend/append)-->
+        <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+        
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        
+    </head>
+    <body>
+        {% if id_number_exists %}
+            <script>alert('{{ id_number_exists }}');</script>
+        {% endif %}
+        
+        {% if form_origin %}
+            <script>
+                var form = document.getElementById('phd_scholar_qualifying_exam_form')
+                form.action = '{{ form_origin }}'
+            </script>
+        {% endif %}
+        <script src="{% static 'js/utils.js' %}"></script>
+        <div class="bootstrap-iso">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <form class="form-horizontal" id="phd_scholar_qualifying_exam_form" method="post" action="/phd/phd_qualifying_exam_update/" onsubmit="return validate_phd_scholar_form()">
+                            {% csrf_token %}
+                            <fieldset>
+                
+                                <!-- Form Name -->
+                                <legend>PhD Scholar Qualifying Exam Information</legend>
+                
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="id_number">ID Number</label>
+                                  <input id="id_number" name="id_number" placeholder="" class="form-control input-md" required="" type="text"  maxlength="13" readonly>
+
+                                </div>
+                
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="control-label" for="primary_area">Primary Area</label>
+                                  <input id="primary_area" name="primary_area" placeholder="" class="form-control input-md" required="" type="text">
+                
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="control-label" for="secondary_area">Secondary Area</label>
+                                  <input id="secondary_area" name="secondary_area" placeholder="" class="form-control input-md" type="text">
+                                </div>
+                
+                                <div class="form-group">
+                                        <label class="control-label" for="first_attempt_date">First Attempt Date</label>
+                                            <div class="input-group">
+                                                <input id="first_attempt_date" class="form-control" name="first_attempt_date" placeholder="DD/MM/YYYY" required="">
+                                                <span class="input-group-addon col-md-4">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                        <label class="control-label" for="second_attempt_date">Second Attempt Date</label>
+                                            <div class="input-group">
+                                                <input id="second_attempt_date" class="form-control" name="second_attempt_date" placeholder="DD/MM/YYYY">
+                                                <span class="input-group-addon col-md-4">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                </div>
+          
+                              <div class="form-group">
+                                  <label class="control-label" for="final_result">Final Result</label>
+                                    <select id="final_result" name="final_result" class="form-control">
+                                      <option value="Pass">Pass</option>
+                                      <option value="Fail">Fail</option>
+                                    </select>
+                              </div>
+
+                                
+                                <div class="form-group">
+                                    <input class="form-control input-md" id="submit" type="submit" value="Save PhD Information">
+                                </div>
+
+                            </fieldset>
+                        </form>
+                        <div class="form-group">
+                            <a href="/phd/"><button class="form-control input-md" >Go to Home</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+        <!-- Include jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        
+        <!-- Include Date Range Picker -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        {% for key, value in form_values.items %}
+            <script>
+                var element = document.getElementById('{{ key }}');
+                {% if value %}
+                    element.value = '{{ value }}';
+                {% endif %}
+            </script>
+        {% endfor %}
+
+        <script>
+            var phd_form  = document.getElementById("phd_scholar_qualifying_exam_form");
+            phd_form.addEventListener("submit", function(){
+                var all_input_elements = phd_form.getElementsByTagName('input');
+                for (var i=0; i< all_input_elements.length; i++){
+                    input = all_input_elements[i];
+                    if (input.name && !input.value){
+                        input.name = '';
+                    }
+                }
+            });
+        </script>
+        <script>
+            $(document).ready(function(){
+                phd_form = document.getElementById("phd_scholar_qualifying_exam_form")
+                dropdowns = phd_form.getElementsByTagName('select');
+                for (var i=0; i<dropdowns.length; i++){
+                    dropdown = dropdowns[i];
+                    dropdown.selectedIndex = -1;
+                }
+                var first_attempt_date =$('input[name="first_attempt_date"]'); //our date input has the name "date"
+                var second_attempt_date =$('input[name="second_attempt_date"]'); //our date input has the name "date"
+                var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                first_attempt_date.datepicker({
+                    format: 'yyyy-mm-dd',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                });
+                second_attempt_date.datepicker({
+                    format: 'yyyy-mm-dd',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                });
+                
+            })
+        </script>
+
+    </body>
+
+</html>

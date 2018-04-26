@@ -23,5 +23,19 @@ urlpatterns = patterns('',
                            name='phd_course_insert'),
                        url(r'^phd_scholar_course_insert',
                            views.phd_scholar_course_insert,
-                           name='phd_scholar_course_insert')
+                           name='phd_scholar_course_insert'),
+                       url(r'^phd_qualifying_exam_update/$',
+                           views.phd_scholar_qualifying_exam_update,
+                           name='phd_qualifying_exam_update'),
+                       url(r'^phd_scholar_profile/(?P<student_id>20\d\dPH[A-Z][A-Z]\d\d\d\dH)/$'
+                           , views.render_phd_scholar_profile,
+                           name='phd_scholar_profile'),
+                       url(r'^phd_query_page/$'
+                           , views.phd_query_page,
+                           name='phd_query_page'),
+                       url(r'^phd_advanced_query/$', views.render_advanced_query,
+                           name='phd_advanced_query'),
+                       url(r'^phd_advanced_query_filter/$',
+                           views.advanced_query_filter,
+                           name='phd_advanced_query_filter')
                        )

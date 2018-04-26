@@ -38,6 +38,7 @@ class PhDScholar(models.Model):
     verbose_name = "PhD Scholar"
     verbose_name_plural = "PhD Scholars"
 
+
 class PhDThesis(models.Model):
   thesis_id = models.AutoField(primary_key=True)
   id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE,
@@ -76,7 +77,6 @@ class PhDThesis(models.Model):
     verbose_name_plural = "PhD Thesis"
 
 
-
 class PhDCourses(models.Model):
   course_id = models.CharField(max_length=15, primary_key=True)
   course_name = models.CharField(max_length=50, null=True, blank=True)
@@ -96,7 +96,9 @@ class PhDScholarCourses(models.Model):
                                 db_column='id_number')
   course_id = models.ForeignKey(PhDCourses, on_delete=models.CASCADE,
                                 db_column='course_id')
-  semester = models.CharField(max_length=10, null=True, blank=True)
+  course_year = models.CharField(max_length=7)
+
+  semester = models.CharField(max_length=10)
   grade = models.CharField(max_length=15, null=True, blank=True)
 
   def __unicode__(self):
@@ -109,22 +111,9 @@ class PhDScholarCourses(models.Model):
     verbose_name_plural = "PhD Scholar Courses"
 
 
-class PhDEvaluator(models.Model):
-  eval_id = models.CharField(max_length=11, primary_key=True)
-  name = models.CharField(max_length=60)
-  university = models.CharField(max_length=50, null=True, blank=True)
-  affiliation = models.CharField(max_length=50, null=True, blank=True)
-  other_details = models.CharField(max_length=150, null=True, blank=True)
-
-  class Meta:
-    db_table = "phd_evaluator"
-    verbose_name = "PhD Evaluator"
-    verbose_name_plural = "PhD Evaluators"
-
-
 class ScholarQualifyingExam(models.Model):
   id_number = models.ForeignKey(PhDScholar, on_delete=models.CASCADE,
-                                db_column='id_number')
+                                db_column='id_number', primary_key=True)
   primary_area = models.CharField(max_length=60, null=True, blank=True)
   secondary_area = models.CharField(max_length=60, null=True, blank=True)
   first_attempt_date = models.DateField("First Attempt Date",

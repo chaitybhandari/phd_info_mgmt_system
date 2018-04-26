@@ -143,3 +143,110 @@ html, body {
     height: 100px;
     margin: 0 auto;
 }
+
+.table-div {
+    width : 400px;
+    margin: 0 auto;
+
+}
+table {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #4a4a4d;
+  font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+th,
+td {
+  padding: 10px 15px;
+  vertical-align: middle;
+}
+
+thead {
+  background: #395870;
+  background: linear-gradient(#49708f, #293f50);
+  color: #fff;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+th:first-child {
+  border-top-left-radius: 5px;
+  height: 50px;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background: #f0f0f2;
+}
+td {
+  border-bottom: 1px solid #cecfd5;
+  border-right: 1px solid #cecfd5;
+}
+td:first-child {
+  border-left: 1px solid #cecfd5;
+}
+
+table td:last-child {
+    width: 30%;
+}
+
+.attribute {
+    text-align: left;
+
+}
+
+.value {
+    text-align: middle;
+
+}
+
+.horizontal-rule{
+    width: 100%
+    margin: 0 auto;
+
+}
+hr {
+    width: 15%;
+    display: block;
+    background-color: black;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+.course-heading {
+    font-size: 11px;
+
+}
+
+select {
+  border: 10px solid transparent
+}
+
+
+.row-query {
+  display: flex; /* equal height of the children */
+}
+
+.filter-query-form {
+  flex: 0.70; /* additionally, equal width */
+  border: solid;
+  padding: 1em;
+}
+
+.filter-query-list {
+  flex: 0.30; /* additionally, equal width */
+  border: solid;
+  padding: 1em;
+  overflow: scroll;
+  height:1250px;
+
+}
+
+#advanced_query_form{
+    margin-bottom: 10px;
+}

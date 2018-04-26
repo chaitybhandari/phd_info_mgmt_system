@@ -41,6 +41,11 @@
                                       <select id="course_id" name="course_id" required="" class="form-control input-md"></select>
                                 </div>
 
+                                <div class="form-group">
+                                  <label class="control-label" for="course_year">Course Year</label>
+                                      <select id="course_year" name="course_year" class="form-control input-md"></select>
+                                </div>
+                                
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="semester">Semester of Admission</label>
@@ -52,7 +57,7 @@
 
                                 <div class="form-group">
                                   <label class="control-label" for="grade">Grade</label>
-                                    <select id="grade" name="semester" class="form-control">
+                                    <select id="grade" name="grade" class="form-control">
                                       <option value="A">A</option>
                                       <option value="A-">A-</option>
                                       <option value="B">B</option>
@@ -95,13 +100,6 @@
         <script>
             var course_options = ""
         </script>
-        {% if dept_course_list %}
-            {% for course in dept_course_list %}
-        <script>
-            course_options += "<option value={{ course.course_id }}>{{ course.course_id }} {{ course.course_name }} </option>"
-        </script>
-            {% endfor %}
-        {% endif %}
 
         {% if scholar_course_list %}
             {% for course in scholar_course_list %}
@@ -122,6 +120,8 @@
         
         <script>
             document.getElementById("course_id").innerHTML = course_options;
+            document.getElementById("course_year").innerHTML =  window.get_year_range(2008);
+
         </script>
         <script>
             $(document).ready(function(){
@@ -164,7 +164,21 @@
                 document.getElementById("grade").removeAttribute("disabled");
             </script>
         {% endif %}
-    
+        <script>
+            $('select[name="course_id"]').change(function(){
+                var input_course = $(this).val();
+                {% if scholar_course_info %}
+                    {% for course_id, course_info in scholar_course_info.items %}
+                        if(input_course == '{{ course_id }}'){
+                            {% for key, value in course_info.items %}
+                                el = document.getElementById('{{ key }}');
+                                el.value = '{{ value }}'
+                            {% endfor %}
+                        }
+                    {% endfor %}
+                {% endif %}
+                });
+        </script>
     
     
     </body>

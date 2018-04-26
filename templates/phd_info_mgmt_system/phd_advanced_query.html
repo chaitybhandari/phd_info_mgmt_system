@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+        
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"/>
+        <style>
+            #myInput {
+              box-sizing: border-box;
+              width: 100%;
+              font-size: 16px;
+              padding: 12px 20px 12px 40px;
+              border: 1px solid #ddd;
+              margin-bottom: 12px;
+              margin-top: 18px;
+            }
+            
+            #myUL {
+              width: 100%;
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+              text-align: center;
+              
+
+            }
+            
+            #myUL li a {
+              border: 1px solid #ddd;
+              margin-top: -1px; /* Prevent double borders */
+              background-color: #f6f6f6;
+              padding: 12px;
+              text-decoration: none;
+              font-size: 18px;
+              color: black;
+              display: block
+
+            }
+            
+            #myUL li a:hover:not(.header) {
+              background-color: #eee;
+            }
+            
+            h5 {
+                margin-top: 30px;
+                margin-bottom: 20px;
+            
+            }
+           
+        </style>
+    </head>
+    <body>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <div class="row-query">
+    <div class="filter-query-form">
+        <div class="bootstrap-iso">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <form class="form-horizontal" id="advanced_query_form" method="post" action="/phd/phd_advanced_query_filter/">
+                            {% csrf_token %}
+                            <fieldset>
+                                <h2>PhD Advanced Query</h2>
+
+                                <h5><u>PhD Scholar Filters</u></h5>
+                                <div class="form-group">
+                                  <label class="control-label" for="phd_scholar_department">Department</label>
+                                      <select id="phd_scholar_department" name="phd_scholar_department" class="form-control input-md"></select>
+                                </div>
+                                
+                              <div class="form-group">
+                                  <label class="control-label" for="phd_scholar_fellowship_type">Fellowship Type</label>
+                                    <select id="phd_scholar_fellowship_type" name="phd_scholar_fellowship_type" class="form-control">
+                                      <option value="No Fellowship">No Fellowship</option>
+                                      <option value="Own Fellowship">Own Fellowship</option>
+                                      <option value="Project Fellow">Project Fellow</option>
+                                      <option value="Institute Fellowship">Institute Fellowship</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label" for="phd_scholar_year_of_admission">Year of Admission</label>
+                                      <select id="phd_scholar_year_of_admission" name="phd_scholar_year_of_admission" class="form-control input-md"></select>
+                                </div>
+
+
+                                <div class="form-group">
+                                  <label class="control-label" for="phd_scholar_admission_semester">Semester of Admission</label>
+                                    <select id="phd_scholar_admission_semester" name="phd_scholar_admission_semester" class="form-control">
+                                      <option value="1">I</option>
+                                      <option value="2">II</option>
+                                    </select>
+                                </div>
+
+                                <h5><u>PhD Thesis Filters</u></h5>
+
+                                <div class="form-group">
+                                  <label class="control-label" for="phd_thesis_supervisor">Supervisor</label>
+                                      <select id="phd_thesis_supervisor" name="phd_thesis_supervisor" class="form-control input-md"></select>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="control-label" for="phd_thesis_cosupervisor">Co-Supervisor</label>
+                                      <select id="phd_thesis_cosupervisor" name="phd_thesis_cosupervisor" class="form-control input-md"></select>
+                                </div>
+                                <h5><u>PhD Course Filters</u></h5>
+
+
+                                <div class="form-group">
+                                  <label class="control-label" for="phd_scholar_course_course_id">Course</label>
+                                      <select id="phd_scholar_course_course_id" name="phd_scholar_course_course_id" class="form-control input-md"></select>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="control-label" for="phd_scholar_course_course_year">Course Year</label>
+                                      <select id="phd_scholar_course_course_year" name="phd_scholar_course_course_year" class="form-control input-md"></select>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="control-label" for="phd_scholar_course_semester">Semester</label>
+                                      <select id="phd_scholar_course_semester" name="phd_scholar_course_semester" class="form-control input-md"></select>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control input-md" id="submit" type="submit" value="Query PhD Info">
+                                </div>
+
+                                
+                            </fieldset>
+                        </form>
+                        
+                       <div class="form-group">
+                           <a href="/phd/phd_advanced_query"><button class="form-control input-md" id="reset" >Reset Query Parameters</button></a>
+                        </div>
+                        <div class="form-group">
+                            <a href="/phd/"><button class="form-control input-md">Go to Home</button></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-query-list">
+        <h2>PhD Query Results</h2>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for ID Numbers." title="Type in an ID Number.">
+        
+        <ul id="myUL"></ul>
+    </div>
+    </div>
+    
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    
+    <script>
+        var id_number_options = ""
+    </script>
+    {% if phd_scholars %}
+        {% for scholar in phd_scholars %}
+    <script>
+        id_number_options += "<li><a href='/phd/phd_scholar_profile/{{ scholar.id_number }}/' target='_blank'>{{ scholar.id_number }}</a></li>"
+    </script>
+    
+        {% endfor %}
+    {% endif %}
+
+    <script>
+        var supervisor_options = ""
+    </script>
+    {% if supervisor_list %}
+        {% for supervisor in supervisor_list %}
+    <script>
+        supervisor_options += "<option value='{{ supervisor }}'>{{ supervisor }}</option>"
+    </script>
+    
+        {% endfor %}
+    {% endif %}
+    
+    <script>
+        var cosupervisor_options = ""
+    </script>
+    {% if cosupervisor_list  %}
+        {% for cosupervisor in cosupervisor_list %}
+    <script>
+        cosupervisor_options += "<option value='{{ cosupervisor }}'>{{ cosupervisor }}</option>"
+    </script>
+    
+        {% endfor %}
+    {% endif %}
+    <script>
+        var course_options = ""
+    </script>
+    {% if all_courses %}
+        {% for course in all_courses %}
+    <script>
+        course_options += "<option value={{ course.course_id }}>{{ course.course_id }} {{ course.course_name }} </option>"
+    </script>
+        {% endfor %}
+    {% endif %}
+    
+    <script>
+        document.getElementById("myUL").innerHTML = id_number_options;
+        document.getElementById("phd_scholar_year_of_admission").innerHTML =  window.get_year_range(2008);
+        document.getElementById("phd_scholar_course_course_year").innerHTML = window.get_year_range(2008);
+        document.getElementById("phd_thesis_supervisor").innerHTML = supervisor_options;
+        document.getElementById("phd_thesis_cosupervisor").innerHTML = cosupervisor_options;
+        document.getElementById("phd_scholar_course_course_id").innerHTML = course_options;
+        
+    </script>
+    
+    <script>
+        var supervisor_options = ""
+        $('select[name="phd_scholar_department"]').change(function(){
+            var input_dept = $(this).val();
+            console.log(input_dept)
+            {% for department, supervisor_list in dept_supervisor_dict.items %}
+                var dept = '{{ department }}';
+                if(input_dept==dept){
+                    
+                    {% for supervisor in supervisor_list %}
+                        supervisor_options += "<option value='{{ supervisor }}'>{{ supervisor }}</option>"
+                    {% endfor %}
+                }
+            {% endfor %}
+            console.log(supervisor_options);
+            document.getElementById("phd_thesis_supervisor").innerHTML = supervisor_options;
+            supervisor_options = "";
+            el = document.getElementById("phd_thesis_supervisor");
+            el.selectedIndex = -1;
+            
+            });
+        
+    
+    </script>
+    <script>
+        var department_options = ""
+    </script>
+    {% if department_list %}
+        {% for department in department_list %}
+    <script>
+        department_options += "<option value='{{ department }}'>{{ department }}</option>"
+    </script>
+        {% endfor %}
+    {% endif %}
+    <script>
+        document.getElementById("phd_scholar_department").innerHTML = department_options;
+    </script>
+    
+    
+    <script>
+    
+        $(document).ready(function(){
+             query_form = document.getElementById("advanced_query_form")
+             dropdowns = query_form.getElementsByTagName('select');
+
+            {% if set_dropdowns %}
+                var selected_dropdowns = []
+                {% for key, value in form_values.items %}
+                    el = document.getElementById('{{ key }}')
+                    if(el.tagName == "SELECT"){
+                        selected_dropdowns.push('{{ key }}')}
+                {% endfor %}
+    
+                for (var i=0; i<dropdowns.length; i++){
+                    if(selected_dropdowns.indexOf(dropdowns[i].id) == -1){
+                        dropdown = dropdowns[i];
+                        dropdown.selectedIndex = -1;
+                    }
+                }
+                
+            {% else %}
+                
+                for (var i=0; i<dropdowns.length; i++){
+                    dropdown = dropdowns[i];
+                    dropdown.selectedIndex = -1;
+                }
+            {% endif %}
+        });
+        function myFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+        
+                }
+            }
+        }
+    </script>
+    
+    {% for key, value in form_values.items %}
+        <script>
+            var element = document.getElementById('{{ key }}');
+            {% if value %}
+                element.value = '{{ value }}';
+            {% endif %}
+        </script>
+    {% endfor %}
+    
+</body>
+</html>

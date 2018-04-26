@@ -202,10 +202,29 @@
             $(document).ready(function(){
                 phd_form = document.getElementById("phd_thesis_form")
                 dropdowns = phd_form.getElementsByTagName('select');
-                for (var i=0; i<dropdowns.length; i++){
-                    dropdown = dropdowns[i];
-                    dropdown.selectedIndex = -1;
-                }
+                {% if set_dropdowns %}
+                    var selected_dropdowns = []
+                    {% for key, value in form_values.items %}
+                        el = document.getElementById('{{ key }}')
+                        if(el.tagName == "SELECT"){
+                            selected_dropdowns.push('{{ key }}')
+                            }
+                    {% endfor %}
+        
+                    for (var i=0; i<dropdowns.length; i++){
+                        if(selected_dropdowns.indexOf(dropdowns[i].id) == -1){
+                            dropdown = dropdowns[i];
+                            dropdown.selectedIndex = -1;
+                        
+                        }
+                   
+                    }
+                {% else %}
+                    for (var i=0; i<dropdowns.length; i++){
+                        dropdown = dropdowns[i];
+                        dropdown.selectedIndex = -1;
+                    }
+                {% endif %}
                 var qualifying_date=$('input[name="qualifying_date"]'); //our date input has the name "date"
                 var draft_submission_date=$('input[name="draft_submission_date"]');
                 var pre_submission_date=$('input[name="pre_submission_date"]');
@@ -218,37 +237,37 @@
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
-                })
+                });
                 draft_submission_date.datepicker({
                     format: 'yyyy-mm-dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
-                })
+                });
                 pre_submission_date.datepicker({
                     format: 'yyyy-mm-dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
-                })
+                });
                 final_submission_date.datepicker({
                     format: 'yyyy-mm-dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
-                })
+                });
                 viva_date.datepicker({
                     format: 'yyyy-mm-dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
-                })
+                });
                 phd_awarded_date.datepicker({
                     format: 'yyyy-mm-dd',
                     container: container,
                     todayHighlight: true,
                     autoclose: true,
-                })
+                });
 
             })
         </script>

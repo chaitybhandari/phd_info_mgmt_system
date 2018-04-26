@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Font Awesome (added because you use icons in your prepend/append)-->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+</head>
+<body>
+    
+    <div class="table-div">
+        <table>
+      <thead>
+        <tr>
+          <th scope="col" colspan="2">PhD Scholar Information</th>
+        </tr>
+      </thead>
+      {% if phd_scholar %}
+          <tbody>
+            <tr>
+              <td>
+                <strong class="attribute">ID Number</strong>
+              </td>
+              <td class="value">{{ phd_scholar.id_number }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Name</strong>
+              </td>
+              <td class="value">{{ phd_scholar.name }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Email ID</strong>
+              </td>
+              <td class="value">{{ phd_scholar.email_id }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Phone Number</strong>
+              </td>
+              <td class="value">{{ phd_scholar.phone_number }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Department</strong>
+              </td>
+              <td class="value">{{ phd_scholar.department }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Admission Year</strong>
+              </td>
+              <td class="value">{{ phd_scholar.year_of_admission }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Fellowship Type</strong>
+              </td>
+              <td class="value">{{ phd_scholar.fellowship_type }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Total Credits</strong>
+              </td>
+              <td class="value">{{ phd_scholar.total_credits }}</td>
+            </tr>
+            </tbody>
+        {% else %}
+        <tr>
+            <td class="value" colspan="2">No Information Available.</td>
+        </tr>
+        {% endif %}
+    </table>
+    </div>
+    <div class="horizontal-rule"><hr></div>
+    <div class="table-div">
+        <table>
+      <thead>
+        <tr>
+          <th scope="col" colspan="2">PhD Thesis Information</th>
+        </tr>
+      </thead>
+      {% if phd_thesis %}
+          <tbody>
+            <tr>
+              <td>
+                <strong class="attribute">Area Of Research</strong>
+              </td>
+              <td class="value">{{ phd_thesis.research_area }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Initial Thesis Title</strong>
+              </td>
+              <td class="value">{{ phd_thesis.initial_thesis_title }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Final Thesis Title</strong>
+              </td>
+              <td class="value">{{ phd_thesis.final_thesis_title }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Topic Approval Status</strong>
+              </td>
+              <td class="value">{{ phd_thesis.topic_approval_status }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Supervisor</strong>
+              </td>
+              <td class="value">{{ phd_thesis.supervisor }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Co-Supervisor</strong>
+              </td>
+              {% if phd_thesis.cosupervisor == None %}
+                <td></td>
+              {% else %}
+                <td class="value">{{ phd_thesis.cosupervisor }}</td>
+              {% endif %}
+            </tr>
+            </tbody>
+        {% else %}
+        <tr>
+            <td class="value" colspan="2">No Thesis Information Available.</td>
+        </tr>
+        {% endif %}
+    </table>
+    </div>
+    <div class="horizontal-rule"><hr></div>
+    <div class="table-div">
+        <table>
+      <thead>
+        <tr>
+          <th scope="col" colspan="5">PhD Course Information</th>
+        </tr>
+        <tr>
+            <th class="course-heading">Course ID</th>
+            <th class="course-heading">Course Name</th>
+            <th class="course-heading">Course Year</th>
+            <th class="course-heading">Course Semester</th>
+            <th class="course-heading">Grade</th>
+        </tr>
+      </thead>
+      {% if phd_courses %}
+          <tbody>
+          {% for course in phd_courses %}
+            <tr>
+              <td class="value">
+                {{ course.course_id_id }}
+              </td>
+              
+              <td class="value">{{ course.course_id.course_name }}</td>
+              <td class="value">{{ course.course_year }}</td>
+              <td class="value">{{ course.semester }}</td>
+              <td class="value">{{ course.grade }}</td>
+              
+            </tr>
+          {% endfor %}
+            </tbody>
+        {% else %}
+        <tr>
+            <td class="value" colspan="5">No Courses Enrolled.</td>
+        </tr>
+        {% endif %}
+    </table>
+    </div>
+    
+    <div class="horizontal-rule"><hr></div>
+    <div class="table-div">
+        <table>
+      <thead>
+        <tr>
+          <th scope="col" colspan="2">PhD Qualifying Exam Information</th>
+        </tr>
+      </thead>
+      {% if phd_qualifying_exam %}
+          <tbody>
+            <tr>
+              <td>
+                <strong class="attribute">Primary Area</strong>
+              </td>
+              <td class="value">{{ phd_qualifying_exam.primary_area}}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">First Attempt Date</strong>
+              </td>
+              <td class="value">{{ phd_qualifying_exam.first_attempt_date }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Second Attempt Date</strong>
+              </td>
+              <td class="value">{{ phd_qualifying_exam.second_attempt_date }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="attribute">Final Result</strong>
+              </td>
+              <td class="value">{{ phd_qualifying_exam.final_result }}</td>
+            </tr>
+            </tbody>
+        {% else %}
+        <tr>
+            <td class="value" colspan="2">No Qualifying Exam Information Available.</td>
+        </tr>
+        {% endif %}
+    </table>
+    </div>
+    <div class="horizontal-rule"><hr></div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</body>
+</html>

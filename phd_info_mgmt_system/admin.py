@@ -1,6 +1,6 @@
 from django.contrib import admin
 from phd_info_mgmt_system.models import PhDScholar, PhDThesis,\
-  PhDCourses, PhDScholarCourses, PhDEvaluator, ScholarQualifyingExam
+  PhDCourses, PhDScholarCourses, ScholarQualifyingExam
 
 class PhDScholarAdmin(admin.ModelAdmin):
   list_display = ('id_number', 'name', 'department')
@@ -33,13 +33,16 @@ class PhDCoursesAdmin(admin.ModelAdmin):
   list_display = ('course_id', 'course_name', 'credits')
 
 
+class ScholarQualifyingExamAdmin(admin.ModelAdmin):
+  list_display = ('id_number', 'final_result')
+
+
 # Register your models here.
 admin.site.register(PhDScholar, PhDScholarAdmin)
 admin.site.register(PhDScholarCourses, PhDScholarCoursesAdmin)
 admin.site.register(PhDThesis, PhDThesisAdmin)
 admin.site.register(PhDCourses, PhDCoursesAdmin)
-admin.site.register(PhDEvaluator)
-admin.site.register(ScholarQualifyingExam)
+admin.site.register(ScholarQualifyingExam, ScholarQualifyingExamAdmin)
 
 
 

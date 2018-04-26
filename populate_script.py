@@ -92,10 +92,15 @@ discipline_details = {"Computer Science": {"supervisors":
                                                                 "Applied"
                                                                 " Microbiology"
                                                   }}}
+
+admission_years = ["2008", "2009", "2010", "2011", "2012", "2013", "2014",
+                   "2015", "2016", "2017", "2018"]
+
 def add_phd_scholars_thesis():
   id_number_template = "2018PHXF00"
   fellowship_types = ["No Fellowship", "Own Fellowship",
                       "Project Fellow", "Institute Fellowship"]
+
   for i in range(1, 51):
     if i < 10:
       id_str = "0{id}H".format(id=i)
@@ -105,22 +110,35 @@ def add_phd_scholars_thesis():
     scholar_department = random.choice(discipline_details.keys())
     scholar_supervisor = random.choice(discipline_details
                                        [scholar_department]['supervisors'])
+    scholar_cosupervisor = random.choice(discipline_details
+                                       [scholar_department]['supervisors'])
     scholar_research_area = random.choice(discipline_details
                                           [scholar_department]['research_area'])
     scholar_name = names.get_full_name()
     scholar_fellowship_type = random.choice(fellowship_types)
+    scholar_admission_year = random.choice(admission_years)
+    semester_of_admission = random.choice(["1", "2"])
     try:
       _ = PhDScholar.objects.get(id_number=scholar_id_number)
     except PhDScholar.DoesNotExist:
       phd_scholar = PhDScholar(id_number=scholar_id_number,
                                name=scholar_name,
                                department=scholar_department,
-                               fellowship_type=scholar_fellowship_type)
+                               fellowship_type=scholar_fellowship_type,
+                               year_of_admission=scholar_admission_year,
+                               semester_of_admission=semester_of_admission)
       phd_scholar.save()
-      phd_thesis = PhDThesis(id_number=phd_scholar,
-                             supervisor=scholar_supervisor,
-                             research_area=scholar_research_area)
-      phd_thesis.save()
+      qualifying_exam_result = random.choice(["Pass", "Fail"])
+      phd_qualifying_exam =\
+        ScholarQualifyingExam(id_number=phd_scholar,
+                              final_result=qualifying_exam_result)
+      phd_qualifying_exam.save()
+      if qualifying_exam_result == "Pass":
+        phd_thesis = PhDThesis(id_number=phd_scholar,
+                               supervisor=scholar_supervisor,
+                               research_area=scholar_research_area,
+                               cosupervisor=scholar_cosupervisor)
+        phd_thesis.save()
 
 
 def update_department_course_pickle():
@@ -167,11 +185,16 @@ def add_scholar_courses():
     scholar_department = scholar.department
     random_courses = random.sample(dept_to_course_list[scholar_department], 2)
     for course in random_courses:
+      year_taken = random.choice(admission_years)
+      semester_taken = random.choice(["1", "2"])
       try:
         _ = PhDScholarCourses.objects.get(id_number=scholar,
                                           course_id=course)
       except PhDScholarCourses.DoesNotExist:
-        phd_scholar_course = PhDScholarCourses(id_number=scholar, course_id=course)
+        phd_scholar_course = PhDScholarCourses(id_number=scholar,
+                                               course_id=course,
+                                               course_year=year_taken,
+                                               semester=semester_taken)
         phd_scholar_course.save()
 
 
@@ -190,12 +213,12 @@ def add_courses():
 if __name__ == '__main__':
   os.environ['DJANGO_SETTINGS_MODULE'] = 'phd_application.settings'
   django.setup()
-  from phd_info_mgmt_system.models import PhDScholar, PhDThesis, PhDCourses, PhDScholarCourses
+  from phd_info_mgmt_system.models import PhDScholar, PhDThesis, PhDCourses, PhDScholarCourses, ScholarQualifyingExam
   parser = argparse.ArgumentParser()
   parser.add_argument('--update_pickle', action='store_true', default=False)
   args = parser.parse_args()
   logging.info("Adding 50 dummy PhD Scholars"
-               " along with their thesis information.")
+               " along with their qualifying exam and thesis information.")
   add_phd_scholars_thesis()
   logging.info("Adding courses to the database.")
   add_courses()
