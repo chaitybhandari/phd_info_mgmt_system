@@ -17,6 +17,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
         
     </head>
+    <ul class="navbar screwed-navbar">
+        <li class="navbar-item navbar-back"><a class="active" style="text-decoration:none; color:white;" href="/phd/render_update_form/">Back</a></li>
+    </ul>
     <body>
         {% if id_number_exists %}
             <script>alert('{{ id_number_exists }}');</script>
@@ -32,39 +35,40 @@
         <div class="bootstrap-iso">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <form class="form-horizontal" id="phd_scholar_qualifying_exam_form" method="post" action="/phd/phd_qualifying_exam_update/" onsubmit="return validate_phd_scholar_form()">
                             {% csrf_token %}
                             <fieldset>
                 
                                 <!-- Form Name -->
-                                <legend>PhD Scholar Qualifying Exam Information</legend>
+                                <legend class="form-legend">PhD Scholar Qualifying Exam Information</legend>
                 
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="id_number">ID Number</label>
-                                  <input id="id_number" name="id_number" placeholder="" class="form-control input-md" required="" type="text"  maxlength="13" readonly>
+                                  <input id="id_number" name="id_number" placeholder="" class="form-control input-md-1" required="" type="text"  maxlength="13" readonly>
 
                                 </div>
                 
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="primary_area">Primary Area</label>
-                                  <input id="primary_area" name="primary_area" placeholder="" class="form-control input-md" required="" type="text">
+                                  <input id="primary_area" name="primary_area" placeholder="" class="form-control input-md-1" required="" type="text">
                 
                                 </div>
                                 
                                 <div class="form-group">
                                   <label class="control-label" for="secondary_area">Secondary Area</label>
-                                  <input id="secondary_area" name="secondary_area" placeholder="" class="form-control input-md" type="text">
+                                  <input id="secondary_area" name="secondary_area" placeholder="" class="form-control input-md-1" type="text">
                                 </div>
                 
                                 <div class="form-group">
                                         <label class="control-label" for="first_attempt_date">First Attempt Date</label>
                                             <div class="input-group">
                                                 <input id="first_attempt_date" class="form-control" name="first_attempt_date" placeholder="DD/MM/YYYY" required="">
-                                                <span class="input-group-addon col-md-4">
-                                                    <i class="fa fa-calendar"></i>
+                                                <span class="input-group-addon col-md-0">
+                                                    <i style="margin-left:10px;" class="fa fa-calendar"></i>
                                                 </span>
                                             </div>
                                 </div>
@@ -73,8 +77,8 @@
                                         <label class="control-label" for="second_attempt_date">Second Attempt Date</label>
                                             <div class="input-group">
                                                 <input id="second_attempt_date" class="form-control" name="second_attempt_date" placeholder="DD/MM/YYYY">
-                                                <span class="input-group-addon col-md-4">
-                                                    <i class="fa fa-calendar"></i>
+                                                <span class="input-group-addon col-md-0">
+                                                    <i class="fa fa-calendar" style="margin-left:10px;"></i>
                                                 </span>
                                             </div>
                                 </div>
@@ -89,15 +93,17 @@
 
                                 
                                 <div class="form-group">
-                                    <input class="form-control input-md" id="submit" type="submit" value="Save PhD Information">
+                                    <input class="form-control input-md-1 btn btn-success" id="submit" type="submit" value="Save PhD Information">
                                 </div>
 
                             </fieldset>
                         </form>
                         <div class="form-group">
-                            <a href="/phd/"><button class="form-control input-md" >Go to Home</button></a>
+                            <a href="/phd/"><button class="form-control input-md-1 btn btn-info" >Go to Home</button></a>
                         </div>
                     </div>
+                    <div class="col-md-3"></div>
+
                 </div>
             </div>
         </div>
@@ -156,7 +162,11 @@
                     autoclose: true,
                 });
                 
-            })
+            });
+            function goBack(){
+                window.history.back();
+            }
+            
         </script>
 
     </body>

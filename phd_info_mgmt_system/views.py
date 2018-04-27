@@ -388,6 +388,7 @@ def advanced_query_filter(request):
     return render_to_response('phd_info_mgmt_system/phd_advanced_query.html',
                               context_dict, context)
 
+
 def render_update_form(request):
   source_resolution_dict = {
     'phd_scholar': {
@@ -497,6 +498,12 @@ def render_update_form(request):
                  '{temp}'.format(temp=source_resolution_dict.
                                  get(source).get('template'))
       return render_to_response(template, context_dict, context)
+
+  else:
+    context_dict = dict()
+    context_dict["phd_scholars"] = PhDScholar.objects.all()
+    return render_to_response("phd_info_mgmt_system/phd_update.html",
+                       context_dict, context)
 
 
 def create_dept_course_list(scholar_record):

@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
 </head>
+    <ul class="navbar">
+        <li class="navbar-item navbar-back"><a class="active" href="/phd/phd_query_page/">Back</a></li>
+    </ul>
 <body>
     
     <div class="table-div">
@@ -225,5 +228,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <!-- Include jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+            function goBack(){
+                window.history.back();
+            }
+        
+    </script>
 </body>
 </html>

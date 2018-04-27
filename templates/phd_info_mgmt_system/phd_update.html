@@ -45,7 +45,7 @@
             <div class="button-group">
                 <div class="input-div">
                     <!--<input id="id_number" name="id_number" class="form-input" placeholder="Enter PhD Scholar ID" required />-->
-                    <select id="id_number" name="id_number" class="form-input"></select>
+                    <select style="border:0; outline:0;" id="id_number" name="id_number" class="form-input"></select>
                 </div>
                 <div class="button-div">
                     <button class="buttons" type="submit" id="phd_scholar" formaction="/phd/render_update_form/" onclick="">PhD Scholar Information</button>
@@ -73,7 +73,7 @@
     {% if phd_scholars %}
         {% for scholar in phd_scholars %}
     <script>
-        id_number_options += "<option value={{ scholar.id_number }}>{{ scholar.id_number }}</option>"
+        id_number_options += "<option style='border:0; outline:0;' value={{ scholar.id_number }}>{{ scholar.id_number }}</option>"
     </script>
         {% endfor %}
     {% endif %}

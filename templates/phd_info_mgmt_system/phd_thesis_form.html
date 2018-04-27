@@ -16,32 +16,37 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         
     </head>
+    <ul class="navbar">
+        <li class="navbar-item navbar-back"><a class="active" href="/phd/render_update_form/" >Back</a></li>
+    </ul>
+    
     <body>
         
         <script src="{% static 'js/utils.js' %}"></script>
         <div class="bootstrap-iso">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <form class="form-horizontal" id="phd_thesis_form" method="post" action="/phd/phd_thesis_update/" novalidate>
                             {% csrf_token %}
                             <fieldset>
                 
                                 <!-- Form Name -->
-                                <legend>PhD Thesis Updation Form</legend>
+                                <legend class="form-legend">PhD Thesis Updation Form</legend>
 
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="id_number">ID Number</label>
-                                  <input id="id_number" name="id_number" placeholder="" class="readonly form-control input-md" required="" type="text" readonly>
+                                  <input id="id_number" name="id_number" placeholder="" class="readonly form-control input-md-1" required="" type="text" readonly>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="control-label" for="qualifying_date">Qualifying Date</label>
                                         <div class="input-group">
                                             <input id="qualifying_date" class="form-control" name="qualifying_date" placeholder="DD/MM/YYYY">
-                                            <span class="input-group-addon col-md-4">
-                                                <i class="fa fa-calendar"></i>
+                                            <span class="input-group-addon col-md-0">
+                                                <i class="fa fa-calendar" style="margin-left: 10px;"></i>
                                             </span>
                                         </div>
                                 </div>
@@ -49,25 +54,25 @@
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="research_area">Research Area</label>
-                                  <input id="research_area" name="research_area" placeholder="" class="form-control input-md" required="" type="text">
+                                  <input id="research_area" name="research_area" placeholder="" class="form-control input-md-1" required="" type="text">
                                 </div>
 
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="initial_thesis_title">Initial Thesis Title</label>
-                                  <input id="initial_thesis_title" name="initial_thesis_title" placeholder="" class="form-control input-md" required="" type="textarea">
+                                  <input id="initial_thesis_title" name="initial_thesis_title" placeholder="" class="form-control input-md-1" required="" type="textarea">
                                 </div>
 
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="control-label" for="final_thesis_title">Final Thesis Title</label>
-                                  <input id="final_thesis_title" name="final_thesis_title" placeholder="" class="form-control input-md" required="" type="textarea">
+                                  <input id="final_thesis_title" name="final_thesis_title" placeholder="" class="form-control input-md-1" required="" type="textarea">
                                 </div>
 
                                 <!-- Select Basic -->
                                 <div class="form-group">
                                   <label class="control-label" for="topic_approval_status">Topic Approval Status</label>
-                                    <select id="topic_approval_status" name="topic_approval_status" class="form-control">
+                                    <select id="topic_approval_status" name="topic_approval_status" class="form-control input-md-1">
                                       <option value="1">Approved</option>
                                       <option value="2">Pending</option>
                                       <option value="3">Rejected</option>
@@ -76,40 +81,40 @@
                 
                                 <div class="form-group">
                                   <label class="control-label" for="supervisor">Supervisor</label>
-                                  <input id="supervisor" name="supervisor" placeholder="" class="form-control input-md" type="text">
+                                  <input id="supervisor" name="supervisor" placeholder="" class="form-control input-md-1" type="text">
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label" for="cosupervisor">Co-Supervisor</label>
-                                  <input id="cosupervisor" name="cosupervisor" placeholder="" class="form-control input-md" type="text">
+                                  <input id="cosupervisor" name="cosupervisor" placeholder="" class="form-control input-md-1" type="text">
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label" for="examiner1">Examiner 1</label>
-                                  <input id="examiner1" name="examiner1" placeholder="" class="form-control input-md" type="text">
+                                  <input id="examiner1" name="examiner1" placeholder="" class="form-control input-md-1" type="text">
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label" for="examiner2">Examiner 2</label>
-                                  <input id="examiner2" name="examiner2" placeholder="" class="form-control input-md" type="text">
+                                  <input id="examiner2" name="examiner2" placeholder="" class="form-control input-md-1" type="text">
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label" for="dac1">DAC 1</label>
-                                  <input id="dac1" name="dac1" placeholder="" class="form-control input-md" type="text">
+                                  <input id="dac1" name="dac1" placeholder="" class="form-control input-md-1" type="text">
                                 </div>
 
                                 <div class="form-group">
                                   <label class="control-label" for="dac2">DAC 2</label>
-                                  <input id="dac2" name="dac2" placeholder="" class="form-control input-md" type="text">
+                                  <input id="dac2" name="dac2" placeholder="" class="form-control input-md-1" type="text">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label" for="draft_submission_date">Draft Submission Date</label>
                                         <div class="input-group">
                                             <input id="draft_submission_date" class="form-control" name="draft_submission_date" placeholder="DD/MM/YYYY">
-                                            <span class="input-group-addon col-md-4">
-                                                <i class="fa fa-calendar"></i>
+                                            <span class="input-group-addon col-md-0">
+                                                <i class="fa fa-calendar" style="margin-left: 10px;"></i>
                                             </span>
                                         </div>
                                 </div>
@@ -118,8 +123,8 @@
                                     <label class="control-label" for="pre_submission_date">Pre Submission Date</label>
                                         <div class="input-group">
                                             <input id="pre_submission_date" class="form-control" name="pre_submission_date" placeholder="DD/MM/YYYY">
-                                            <span class="input-group-addon col-md-4">
-                                                <i class="fa fa-calendar"></i>
+                                            <span class="input-group-addon col-md-0">
+                                                <i style="margin-left: 10px;" class="fa fa-calendar"></i>
                                             </span>
                                         </div>
                                 </div>
@@ -128,8 +133,8 @@
                                     <label class="control-label" for="final_submission_date">Final Submission Date</label>
                                         <div class="input-group">
                                             <input id="final_submission_date" class="form-control" name="final_submission_date" placeholder="DD/MM/YYYY">
-                                            <span class="input-group-addon col-md-4">
-                                                <i class="fa fa-calendar"></i>
+                                            <span class="input-group-addon col-md-0">
+                                                <i class="fa fa-calendar" style="margin-left: 10px;"></i>
                                             </span>
                                         </div>
                                 </div>
@@ -138,8 +143,9 @@
                                     <label class="control-label" for="viva_date">Viva Date</label>
                                         <div class="input-group">
                                             <input id="viva_date" class="form-control" name="viva_date" placeholder="DD/MM/YYYY">
-                                            <span class="input-group-addon col-md-4">
-                                                <i class="fa fa-calendar"></i>
+                                            <span class="input-group-addon col-md-0 ">
+                                                
+                                                <i class="fa fa-calendar" style="margin-left: 10px;"></i>
                                             </span>
                                         </div>
                                 </div>
@@ -148,22 +154,24 @@
                                     <label class="control-label" for="phd_awarded_date">PhD Awarded Date</label>
                                         <div class="input-group">
                                             <input id="phd_awarded_date" class="form-control" name="phd_awarded_date" placeholder="DD/MM/YYYY">
-                                            <span class="input-group-addon col-md-4">
-                                                <i class="fa fa-calendar"></i>
+                                            <span class="input-group-addon col-md-0">
+                                                <i class="fa fa-calendar" style="margin-left: 10px;"></i>
                                             </span>
                                         </div>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <input class="form-control input-md" id="submit" type="submit" value="Save Thesis Information">
+                                    <input class="form-control input-md-1 btn btn-success" id="submit" type="submit" value="Save Thesis Information">
                                 </div>
                                 
                             </fieldset>
                         </form>
                         <div class="form-group">
-                            <a href="/phd/"><button class="form-control input-md" >Go to Home</button></a>
+                            <a href="/phd/"><button class="form-control input-md-1 btn btn-info" >Go to Home</button></a>
                         </div>
                     </div>
+                    <div class="col-md-3"></div>
+                    
                 </div>
             </div>
         </div>
@@ -269,7 +277,11 @@
                     autoclose: true,
                 });
 
-            })
+            });
+            function goBack(){
+                window.history.back();
+            }
+            
         </script>
 
     </body>

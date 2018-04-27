@@ -42,8 +42,10 @@ html, body {
 
 .buttons {
     background-color: #4CAF50;
+    //background-color: rgba(160,180,166,1);
     border-radius: 5px;
-    border: none;
+    border: solid 1px;
+    border-color: black;
     color: white;
     cursor: pointer;
     transition: background .5s;
@@ -93,7 +95,6 @@ html, body {
 
 .index-page-img {
     background-image: url("/static/img/bits2.jpg");
-
 
     /* Full height */
     height: 100%;
@@ -249,4 +250,42 @@ select {
 
 #advanced_query_form{
     margin-bottom: 10px;
+}
+
+.scholar {
+    text-align: left;
+
+}
+
+.input-md {
+    width: 50%;
+
+}
+
+.form-legend{
+    text-align: center;
+    padding-top: 10px;
+}
+
+.form-submit-btn {
+    background-color: #4CAF50;
+}
+
+.navbar-back {
+    align-content: right;
+    margin-left:94%;
+}
+
+.screwed-navbar{
+    height: 48px;
+}
+
+.input-md-1{
+    width: 95%;
+
+}
+
+:focus {
+
+    border:0; outline:0;
 }

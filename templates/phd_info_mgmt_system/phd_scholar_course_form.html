@@ -12,6 +12,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
         
     </head>
+    <ul class="navbar screwed-navbar">
+        <li class="navbar-item navbar-back"><a style="text-decoration:none; color:white;" class="active" href="/phd/render_update_form/">Back</a></li>
+    </ul>
+    
     <body>
         {% if scholar_course_exists %}
             <script>alert(' {{ scholar_course_exists}} ');</script>
@@ -24,13 +28,14 @@
         
         <script src="{% static 'js/utils.js' %}"></script>
         <div class="bootstrap-iso">
-            <div class="container-fluid">
+            <div class="container-fluid scholar">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <form class="form-horizontal" id="phd_scholar_course_form" method="post" action='{{ form_action }}' onsubmit="return validate_phd_scholar_course_form()">
                             {% csrf_token %}
                             <fieldset>
-                                <legend>PhD Scholar Course Information</legend>
+                                <legend class="form-legend">PhD Scholar Course Information</legend>
                                 <div class="form-group">
                                   <label class="control-label" for="id_number">ID Number</label>
                                   <input id="id_number" name="id_number" placeholder="" class="readonly form-control input-md" required="" type="text" maxlength="13">
@@ -71,15 +76,17 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <input class="form-control input-md" id="submit" type="submit" value="Save Course Information">
+                                    <input class="form-control input-md btn btn-success" id="submit" type="submit" value="Save Course Information">
                                 </div>
                             </fieldset>
                         </form>
                         <div class="form-group">
-                            <a href="/phd/"><button class="form-control input-md">Go to Home</button></a>
+                            <a href="/phd/"><button class="form-control input-md btn btn-info">Go to Home</button></a>
                         </div>
        
                     </div>
+                    <div class="col-md-3"></div>
+                    
                 </div>
             </div>
         </div>
@@ -178,6 +185,10 @@
                     {% endfor %}
                 {% endif %}
                 });
+            function goBack(){
+                window.history.back();
+            }
+            
         </script>
     
     

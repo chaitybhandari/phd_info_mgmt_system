@@ -57,6 +57,9 @@
            
         </style>
     </head>
+    <ul class="navbar screwed-navbar">
+        <li class="navbar-item navbar-back "><a style="text-decoration:none; color:white;" class="active" href="/phd/phd_query_page/">Back</a></li>
+    </ul>
     <body>
     <script src="{% static 'js/utils.js' %}"></script>
     <div class="row-query">
@@ -68,7 +71,7 @@
                         <form class="form-horizontal" id="advanced_query_form" method="post" action="/phd/phd_advanced_query_filter/">
                             {% csrf_token %}
                             <fieldset>
-                                <h2>PhD Advanced Query</h2>
+                                <h2 style="padding-top:10px;">PhD Advanced Query</h2>
 
                                 <h5><u>PhD Scholar Filters</u></h5>
                                 <div class="form-group">
@@ -129,7 +132,7 @@
                                       <select id="phd_scholar_course_semester" name="phd_scholar_course_semester" class="form-control input-md"></select>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-md" id="submit" type="submit" value="Query PhD Info">
+                                    <input class="form-control input-md btn btn-success" id="submit" type="submit" value="Query PhD Info">
                                 </div>
 
                                 
@@ -137,10 +140,10 @@
                         </form>
                         
                        <div class="form-group">
-                           <a href="/phd/phd_advanced_query"><button class="form-control input-md" id="reset" >Reset Query Parameters</button></a>
+                           <a href="/phd/phd_advanced_query"><button class="form-control input-md btn btn-danger" id="reset" >Reset Query Parameters</button></a>
                         </div>
                         <div class="form-group">
-                            <a href="/phd/"><button class="form-control input-md">Go to Home</button></a>
+                            <a href="/phd/"><button class="form-control input-md btn btn-info">Go to Home</button></a>
                         </div>
                         
                     </div>
@@ -164,6 +167,7 @@
     
     
     <script>
+    
         var id_number_options = ""
     </script>
     {% if phd_scholars %}
@@ -313,6 +317,6 @@
             {% endif %}
         </script>
     {% endfor %}
-    
+   
 </body>
 </html>

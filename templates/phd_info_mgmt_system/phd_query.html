@@ -29,7 +29,7 @@
         
     <script src="{% static 'js/utils.js' %}"></script>
     <div class="update-page-img">
-        <form id="phd_query_form" method="post" onsubmit="return validate_update_form()">
+        <form id="phd_query_form" method="post" onsubmit="return validate_form()">
             {% csrf_token %}
             
             <div class="button-group">
@@ -82,6 +82,16 @@
                 source.value = clicked_button;
             });
         });
+        
+        function validate_form(){
+            var form = document.forms["phd_query_form"];
+            var id_value = form["id_number"].value;
+            if (id_value == '0'){
+                alert("Please select an ID number from the dropdown.");
+                return false;
+            }
+        }
+        
     </script>
 
   
